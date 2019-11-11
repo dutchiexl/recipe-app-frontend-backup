@@ -5,6 +5,7 @@ import produce from 'immer';
 import { Observable, of } from 'rxjs';
 import { Step } from '../interfaces/step.interface';
 import { Ingredient } from '../interfaces/ingredient.interface';
+import { RecipeService } from '../services/recipe.service';
 
 export interface RecipeStateModel {
   recipes: Recipe[];
@@ -18,6 +19,9 @@ export interface RecipeStateModel {
 })
 export class RecipeState {
 
+  constructor(private recipeService: RecipeService) {
+  }
+
   @Selector()
   public static getState(state: RecipeStateModel) {
     return state;
@@ -30,7 +34,7 @@ export class RecipeState {
 
   @Action(LoadRecipesAction)
   public loadRecipes(ctx: StateContext<RecipeStateModel>, {}: LoadRecipesAction) {
-    this.mockRecipes().subscribe((recipes) => {
+    this.recipeService.getRecipes().subscribe((recipes) => {
       ctx.setState(
         produce(ctx.getState(), (draft) => {
           draft.recipes = recipes;

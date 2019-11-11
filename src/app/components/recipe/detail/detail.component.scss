@@ -35,12 +35,12 @@
 
   .info {
     display: flex;
-    flex: 1 0 calc(20% - 20px);
-    max-width: calc(20% - 20px);
+    flex: 1 0 calc(20%);
+    max-width: calc(20%);
   }
 
   .list-overview {
-    flex: 1 0 calc(80% - 20px);
-    max-width: calc(80% - 20px);
+    flex: 1 0 calc(80%);
+    max-width: calc(80%);
   }
 }

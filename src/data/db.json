@@ -1,0 +1,64 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Filipijnse peperkip",
+      "nameAddition": "met gestoofde groenten en rijst",
+      "description": "Een van de bekendste filipijnse recepten",
+      "imagePath": "assets/images/filipino-chicken.jpg",
+      "creationDate": "01-01-2019",
+      "steps": [],
+      "ingredients": [
+        {
+          "name": "Pijnboompitten",
+          "amount": 5,
+          "unit": 3
+        },
+        {
+          "name": "courgette",
+          "amount": 1
+        }
+      ],
+      "nutrients": [],
+      "equipment": []
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "name": "gram",
+      "metric": "weight",
+      "isParent": true,
+      "synonyms": [
+        "g",
+        "gr"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Kilogram",
+      "metric": "weight",
+      "isParent": false,
+      "parentUnitId": 1,
+      "parentRatio": 1000,
+      "synonyms": [
+        "Kg",
+        "gr"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "tablespoon",
+      "metric": "volume",
+      "synonyms": [
+        "tbsp"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "item",
+      "metric": "item",
+      "synonyms": []
+    }
+  ]
+}

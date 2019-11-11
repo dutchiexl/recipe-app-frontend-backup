@@ -7,6 +7,7 @@ export interface Recipe {
   nameAddition: string;
   description: string;
   imagePath?: string;
+  source?: string;
   steps: Step[];
   ingredients: Ingredient[];
   equipment: [];

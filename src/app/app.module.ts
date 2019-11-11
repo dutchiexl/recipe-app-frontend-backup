@@ -15,6 +15,8 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { StepComponent } from './components/recipe/step/step.component';
 import { LoadRecipesAction } from './store/recipe.actions';
 import { IngredientComponent } from './components/recipe/ingredient/ingredient.component';
+import { RecipeService } from './services/recipe.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { IngredientComponent } from './components/recipe/ingredient/ingredient.c
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatCardModule,
     NgxsModule.forRoot([
@@ -37,7 +40,9 @@ import { IngredientComponent } from './components/recipe/ingredient/ingredient.c
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    RecipeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
