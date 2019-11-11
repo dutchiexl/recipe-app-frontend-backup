@@ -2,7 +2,7 @@ import { Step } from './step.interface';
 import { Ingredient } from './ingredient.interface';
 
 export interface Recipe {
-  id: number,
+  id?: number,
   name: string
   nameAddition: string;
   description: string;

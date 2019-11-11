@@ -1,0 +1,43 @@
+.header-image {
+  text-align: center;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
+.head {
+  display: flex;
+  width: 90%;
+  margin: 40px auto 60px;
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: normal;
+  }
+
+  .name {
+    flex: 1 0 calc(50% - 20px);
+  }
+
+  .description {
+    flex: 1 0 calc(50% - 20px);
+  }
+}
+
+.recipe-detail {
+
+  .info {
+    display: flex;
+    flex: 1 0 calc(50%);
+    max-width: calc(50%);
+  }
+
+  .list-overview {
+    flex: 1 0 calc(50%);
+    max-width: calc(50%);
+  }
+}

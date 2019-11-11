@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="recipe-detail">
+    <div class="header-image">
+      <img src="/assets/images/placeholder.png" alt="header">
+    </div>
+    <div class="head">
+      <div class="name">
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Naam">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="nameAddition" placeholder="Subtitel">
+        </mat-form-field>
+      </div>
+      <div class="description">
+        <mat-form-field>
+          <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="details container">
+      <div class="info">
+        <div class="ingredients">
+          <h3>
+            Ingredienten
+          </h3>
+          <div formArrayName="ingredientFormGroup">
+            <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
+              <app-edit-ingredient formControlName="{{ i }}" [ingredient]="ingredient.value"></app-edit-ingredient>
+              <span (click)="deleteIngredient(i)"></span>
+            </div>
+          </div>
+          <a (click)="addIngredient()">Voeg toe</a>
+        </div>
+      </div>
+      <div class="steps list-overview columns-3">
+
+      </div>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
