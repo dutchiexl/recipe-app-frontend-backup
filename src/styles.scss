@@ -7,7 +7,7 @@ body {
   margin: 0;
 
   .mat-card-title {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -29,6 +29,20 @@ body {
     flex: 1 0 calc(25% - 20px);
     max-width: calc(25% - 20px);
     margin: 10px;
+
+    .mat-card-header-text {
+      margin: 0;
+    }
+
+    mat-card {
+      height: 90%;
+    }
+
+    mat-card-content {
+      line-height: 1.5rem;
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
   }
 
   &.columns-3 {

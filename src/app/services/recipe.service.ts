@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Recipe } from '../interfaces/recipe.interface';
 import { map } from 'rxjs/operators';
 import { RecipeMapper } from '../mappers/recipe.mapper';
-import { RawRecipe } from '../interfaces/raw-recipe.interface';
+import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 
 @Injectable()
 export class RecipeService {

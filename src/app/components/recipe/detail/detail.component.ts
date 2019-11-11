@@ -17,14 +17,15 @@ export class DetailComponent implements OnInit {
   constructor(
     private store: Store,
     private route: ActivatedRoute
-  ) {
-    this.recipes = store.selectSnapshot(RecipeState.getRecipes);
-  }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      let recipeId = Number(params.get('recipeId'));
-      this.recipe = RecipeListUtil.findRecipeById(this.recipes, recipeId);
+      this.store.select(RecipeState.getRecipes).subscribe((recipes) => {
+        this.recipes = recipes;
+        let recipeId = Number(params.get('recipeId'));
+        this.recipe = RecipeListUtil.findRecipeById(this.recipes, recipeId);
+      });
     });
   }
 }

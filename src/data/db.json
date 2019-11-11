@@ -5,9 +5,20 @@
       "name": "Filipijnse peperkip",
       "nameAddition": "met gestoofde groenten en rijst",
       "description": "Een van de bekendste filipijnse recepten",
-      "imagePath": "assets/images/filipino-chicken.jpg",
+      "imagePath": "assets/images/filipijnse-kip/filipino-chicken.jpg",
       "creationDate": "01-01-2019",
-      "steps": [],
+      "steps": [
+        {
+          "name": "Aardappels roosteren",
+          "text": "Verwarm de oven voor op 220°C. Boen de aardappels schoon en snijd ze in partjes. Leg de aardappels op een bakplaat met bakpapier en hussel ze om met 1el olijfolie, 1/4-1/2tl zout en peper. Rooster de aardappels in ca. 20 min goudbruin en gaar. Hussel na 10 min een keer om",
+          "imagePath": "assets/images/filipijnse-kip/potatoes.jpg"
+        },
+        {
+          "name": "Pijnboompitten roosteren",
+          "text": "Verhit een middelgrote, droge koekenpan op middlehoog vuur en rooster de pijnboompitten in 2-3 min goudbruin. Let op, de pitten kunnen snel verbranden. Neem uit de pan en zet appart",
+          "imagePath": "assets/images/filipijnse-kip/pine.jpg"
+        }
+      ],
       "ingredients": [
         {
           "name": "Pijnboompitten",
