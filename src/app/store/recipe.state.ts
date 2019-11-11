@@ -3,6 +3,8 @@ import { LoadRecipesAction } from './recipe.actions';
 import { Recipe } from '../interfaces/recipe.interface';
 import produce from 'immer';
 import { Observable, of } from 'rxjs';
+import { Step } from '../interfaces/step.interface';
+import { Ingredient } from '../interfaces/ingredient.interface';
 
 export interface RecipeStateModel {
   recipes: Recipe[];
@@ -41,12 +43,14 @@ export class RecipeState {
     let recipes = [];
 
     let recipe: Recipe = {
+      id: 1,
       name: 'Filipijnse peperkip',
       nameAddition: 'met gestoofde groenten en rijst',
       description: 'Een van de bekendste filipijnse recepten',
+      imagePath: 'assets/images/filipino-chicken.jpg',
       creationDate: new Date(),
-      ingredients: [],
-      steps: [],
+      steps: this.mockSteps(),
+      ingredients: this.mockIngredients(),
       nutrients: [],
       equipment: [],
     };
@@ -54,12 +58,13 @@ export class RecipeState {
     recipes.push(recipe);
 
     let recipe2: Recipe = {
+      id: 2,
       name: 'Italiaanse pesto-aardappelsalade',
       nameAddition: 'met mozarella en cherrytomaten',
       description: 'Pasta pesto is ...',
       creationDate: new Date(),
-      ingredients: [],
-      steps: [],
+      ingredients: this.mockIngredients(),
+      steps: this.mockSteps(),
       nutrients: [],
       equipment: [],
     };
@@ -67,5 +72,44 @@ export class RecipeState {
     recipes.push(recipe2);
 
     return of(recipes);
+  }
+
+  private mockSteps(): Step[] {
+    return [
+      {
+        name: 'Aardappels roosteren',
+        text: 'Verwarm de oven op ...'
+      },
+      {
+        name: 'Aardappels roosteren',
+        text: 'Verwarm de oven op ...'
+      },
+      {
+        name: 'Aardappels roosteren',
+        text: 'Verwarm de oven op ...'
+      },
+      {
+        name: 'Aardappels roosteren',
+        text: 'Verwarm de oven op ...'
+      },
+      {
+        name: 'Aardappels roosteren',
+        text: 'Verwarm de oven op ...'
+      }
+    ];
+  }
+
+  private mockIngredients(): Ingredient[] {
+    return [
+      {
+        name: 'pijnboompitten',
+        amount: 1,
+        quantifier: 'schep'
+      },
+      {
+        name: 'courgette',
+        amount: 1,
+      }
+    ];
   }
 }

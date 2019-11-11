@@ -1,1 +1,33 @@
-<p>detail works!</p>
+<div class="recipe-detail" *ngIf="recipe">
+  <div class="header-image">
+    <img *ngIf="recipe.imagePath" src="{{recipe.imagePath}}" alt="header">
+  </div>
+  <div class="head">
+    <div class="name">
+      <h1>
+        {{ recipe.name }}
+      </h1>
+      <h2>
+        {{ recipe.nameAddition }}
+      </h2>
+    </div>
+    <div class="description">
+      {{recipe.description }}
+    </div>
+  </div>
+  <div class="details container">
+    <div class="info">
+      <div class="ingredients">
+        <h3>
+          Ingredienten
+        </h3>
+        <ul>
+          <app-ingredient *ngFor="let ingredient of recipe.ingredients" [ingredient]="ingredient"></app-ingredient>
+        </ul>
+      </div>
+    </div>
+    <div class="steps list-overview columns-3">
+      <app-step class="list-item" *ngFor="let step of recipe.steps" [step]="step"></app-step>
+    </div>
+  </div>
+</div>

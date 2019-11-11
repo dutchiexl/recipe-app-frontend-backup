@@ -8,16 +8,22 @@ import { MatCardModule, MatToolbarModule } from '@angular/material';
 import { OverviewComponent } from './components/recipe/overview/overview.component';
 import { DetailComponent } from './components/recipe/detail/detail.component';
 import { OverviewItemComponent } from './components/recipe/overview/overview-item/overview-item.component';
-import { NgxsModule } from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
 import { RecipeState } from './store/recipe.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { StepComponent } from './components/recipe/step/step.component';
+import { LoadRecipesAction } from './store/recipe.actions';
+import { IngredientComponent } from './components/recipe/ingredient/ingredient.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewItemComponent,
     OverviewComponent,
-    DetailComponent
+    DetailComponent,
+    StepComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +34,15 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     NgxsModule.forRoot([
       RecipeState
     ]),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsRouterPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor(private store: Store) {
+    store.dispatch(new LoadRecipesAction());
+  }
 }

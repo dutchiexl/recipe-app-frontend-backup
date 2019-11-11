@@ -1,8 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
 .mat-card-header-text {
-  margin: 0 !important;
+  margin: 0;
 
   .mat-card-title {
     font-size: 1rem;
+  }
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.list-overview {
+  display: flex;
+  flex-wrap: wrap;
+
+  .list-item {
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  &.columns-3 {
+    flex: 1 0 calc((100% / 3 - 20px) * 2);
+    max-width: calc((100% / 3 - 20px) * 2);
+
+    .list-item {
+      flex: 1 0 calc(100% / 3 - 20px);
+      max-width: calc(100% / 3 - 20px);
+    }
   }
 }
