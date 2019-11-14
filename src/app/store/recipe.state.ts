@@ -1,10 +1,7 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { LoadRecipesAction } from './recipe.actions';
+import { LoadRecipesAction, UpdateOrCreateRecipeAction } from './recipe.actions';
 import { Recipe } from '../interfaces/recipe.interface';
 import produce from 'immer';
-import { Observable, of } from 'rxjs';
-import { Step } from '../interfaces/step.interface';
-import { Ingredient } from '../interfaces/ingredient.interface';
 import { RecipeService } from '../services/recipe.service';
 
 export interface RecipeStateModel {
@@ -43,77 +40,10 @@ export class RecipeState {
     });
   }
 
-  private mockRecipes(): Observable<Recipe[]> {
-    let recipes = [];
-
-    let recipe: Recipe = {
-      id: 1,
-      name: 'Filipijnse peperkip',
-      nameAddition: 'met gestoofde groenten en rijst',
-      description: 'Een van de bekendste filipijnse recepten',
-      imagePath: 'assets/images/filipino-chicken.jpg',
-      creationDate: new Date(),
-      steps: this.mockSteps(),
-      ingredients: this.mockIngredients(),
-      nutrients: [],
-      equipment: [],
-    };
-
-    recipes.push(recipe);
-
-    let recipe2: Recipe = {
-      id: 2,
-      name: 'Italiaanse pesto-aardappelsalade',
-      nameAddition: 'met mozarella en cherrytomaten',
-      description: 'Pasta pesto is ...',
-      creationDate: new Date(),
-      ingredients: this.mockIngredients(),
-      steps: this.mockSteps(),
-      nutrients: [],
-      equipment: [],
-    };
-
-    recipes.push(recipe2);
-
-    return of(recipes);
-  }
-
-  private mockSteps(): Step[] {
-    return [
-      {
-        name: 'Aardappels roosteren',
-        text: 'Verwarm de oven op ...'
-      },
-      {
-        name: 'Aardappels roosteren',
-        text: 'Verwarm de oven op ...'
-      },
-      {
-        name: 'Aardappels roosteren',
-        text: 'Verwarm de oven op ...'
-      },
-      {
-        name: 'Aardappels roosteren',
-        text: 'Verwarm de oven op ...'
-      },
-      {
-        name: 'Aardappels roosteren',
-        text: 'Verwarm de oven op ...'
-      }
-    ];
-  }
-
-  private mockIngredients(): Ingredient[] {
-    return [
-      {
-        name: 'pijnboompitten',
-        amount: 1,
-        quantifier: 'schep'
-      },
-      {
-        name: 'courgette',
-        amount: 1,
-      }
-    ];
+  @Action(UpdateOrCreateRecipeAction)
+  public updateOrCreateRecipe(ctx: StateContext<RecipeStateModel>, action: UpdateOrCreateRecipeAction) {
+    this.recipeService.create(action.recipe).subscribe(() => {
+      ctx.dispatch(new LoadRecipesAction());
+    });
   }
 }

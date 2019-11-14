@@ -1,0 +1,31 @@
+.ingredient-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+::ng-deep mat-form-field {
+  &.amount {
+    display: flex;
+    flex: 1 0 calc(30% - 10px);
+    max-width: calc(30% - 10px);
+    margin-right: 10px;
+  }
+
+  &.unit {
+    display: flex;
+    flex: 1 0 calc(20% - 10px);
+    max-width: calc(20% - 10px);
+    margin-right: 10px;
+  }
+
+  &.name {
+    display: flex;
+    flex: 1 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    margin-right: 10px;
+  }
+
+  .mat-form-field-infix {
+    width: 100%;
+  }
+}

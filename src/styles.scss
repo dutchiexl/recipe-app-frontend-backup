@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
+  font-family: 'Roboto';
 }
 
 .mat-card-header-text {
@@ -54,4 +55,8 @@ body {
       max-width: calc(100% / 3 - 20px);
     }
   }
+}
+
+.hidden {
+  display: none;
 }

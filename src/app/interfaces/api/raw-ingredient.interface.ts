@@ -1,5 +1,5 @@
 export interface RawIngredient {
-  'name': string,
-  'amount': number,
-  'unitId': number
+  name: string,
+  amount: number,
+  unitId?: number
 }

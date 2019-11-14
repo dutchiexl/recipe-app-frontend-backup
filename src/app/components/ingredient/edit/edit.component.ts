@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -22,6 +22,7 @@ import { Ingredient } from '../../../interfaces/ingredient.interface';
 })
 export class EditIngredientComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input() ingredient: Ingredient;
+  @Output() addIngredient = new EventEmitter();
   ingredientItemForm: FormGroup;
 
   onChange = (ingredient: Ingredient) => {};
@@ -30,16 +31,19 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   ngOnInit() {
-    const name = this.ingredient.name ? this.ingredient.name : '';
-    const amount = this.ingredient.amount ? this.ingredient.amount : 0;
+    const name = this.ingredient.name ? this.ingredient.name : null;
+    const unit = this.ingredient.quantifier ? this.ingredient.quantifier : null;
+    const amount = this.ingredient.amount ? this.ingredient.amount : null;
 
     this.ingredientItemForm = this.formBuilder.group({
       name: [name, Validators.required],
+      unit: [unit, Validators.required],
       amount: [amount, [Validators.required]]
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   registerOnChange(fn: any): void {
@@ -56,4 +60,10 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
     this.onChange(obj);
   }
 
+  updateIngredient(event: Event) {
+    this.ingredient.name = this.ingredientItemForm.get('name').value;
+    this.ingredient.quantifier = this.ingredientItemForm.get('unit').value;
+    this.ingredient.amount = this.ingredientItemForm.get('amount').value;
+    this.onChange(this.ingredient);
+  }
 }

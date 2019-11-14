@@ -5,6 +5,7 @@ import { Recipe } from '../interfaces/recipe.interface';
 import { map } from 'rxjs/operators';
 import { RecipeMapper } from '../mappers/recipe.mapper';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
+import { RecipeUtil } from '../utils/recipe.util';
 
 @Injectable()
 export class RecipeService {
@@ -20,5 +21,15 @@ export class RecipeService {
         return rawData.map((rawRecipeData) => RecipeMapper.toObject(rawRecipeData));
       })
     );
+  }
+
+  create(recipe: Recipe): Observable<Object> {
+    return this.http.post(this.callbackUrl, RecipeUtil.recipeAsJSON(recipe));
+  }
+
+  update(recipe: Recipe) {
+    this.http.patch(this.callbackUrl + '/' + recipe.id, RecipeUtil.recipeAsJSON(recipe))
+      .subscribe(() => {
+      });
   }
 }

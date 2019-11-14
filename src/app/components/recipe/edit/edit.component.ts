@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Recipe } from '../../../interfaces/recipe.interface';
 import { RecipeUtil } from '../../../utils/recipe.util';
-import { IngredientUtil } from '../../../utils/ingredient-util';
+import { Store } from '@ngxs/store';
+import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';
+import { StepUtil } from '../../../utils/step.util';
+import { IngredientUtil } from '../../../utils/ingredient.util';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit',
@@ -13,8 +17,15 @@ export class EditComponent implements OnInit {
   recipe: Recipe;
   form: FormGroup;
   ingredientFormGroup: FormArray = new FormArray([]);
+  stepFormGroup: FormArray = new FormArray([]);
+  preview = '/assets/images/placeholder.png';
+  @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private store: Store,
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) {
     this.recipe = RecipeUtil.createEmpty();
   }
 
@@ -23,13 +34,22 @@ export class EditComponent implements OnInit {
       name: ['', Validators.required],
       nameAddition: ['', Validators.required],
       description: ['', Validators.required],
-      ingredientFormGroup: this.ingredientFormGroup
+      imagePath: [null, Validators.required],
+      ingredients: this.ingredientFormGroup,
+      steps: this.stepFormGroup
     });
   }
 
   submitForm() {
-    console.log('submit');
-    console.log(this.form);
+    if (this.form.valid) {
+      this.recipe.name = this.form.get('name').value;
+      this.recipe.nameAddition = this.form.get('nameAddition').value;
+      this.recipe.description = this.form.get('description').value;
+      this.recipe.ingredients = this.form.get('ingredients').value;
+      this.recipe.steps = this.form.get('steps').value;
+      this.recipe.imagePath = this.form.get('imagePath').value;
+      this.store.dispatch(new UpdateOrCreateRecipeAction(this.recipe));
+    }
   }
 
   addIngredient() {
@@ -38,7 +58,37 @@ export class EditComponent implements OnInit {
     this.ingredientFormGroup.push(new FormControl(ingredient, Validators.required));
   }
 
-  deleteIngredient(index: number) {
+  addStep() {
+    const step = StepUtil.createEmpty();
+    this.recipe.steps.push(StepUtil.createEmpty());
+    this.stepFormGroup.push(new FormControl(step, Validators.required));
+  }
 
+  deleteIngredient(i: number) {
+
+  }
+
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+
+    let formData = new FormData();
+    formData.append('image', file);
+
+    this.http.post('/api/upload', formData)
+      .subscribe((response) => {
+        let filename = response['fileName'].split('/');
+        this.form.patchValue({
+          imagePath: '/assets/images/'+filename[filename.length - 1]
+        });
+        this.form.get('imagePath').updateValueAndValidity();
+        console.log(this.form.get('imagePath').value);
+      })
   }
 }

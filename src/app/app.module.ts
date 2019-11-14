@@ -4,7 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule, MatDividerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatToolbarModule
+} from '@angular/material';
 import { OverviewComponent } from './components/recipe/overview/overview.component';
 import { DetailComponent } from './components/recipe/detail/detail.component';
 import { OverviewItemComponent } from './components/recipe/overview/overview-item/overview-item.component';
@@ -20,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/recipe/edit/edit.component';
 import { EditIngredientComponent } from './components/ingredient/edit/edit.component';
+import { EditStepComponent } from './components/step/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,8 @@ import { EditIngredientComponent } from './components/ingredient/edit/edit.compo
     StepComponent,
     IngredientComponent,
     EditComponent,
-    EditIngredientComponent
+    EditIngredientComponent,
+    EditStepComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,8 @@ import { EditIngredientComponent } from './components/ingredient/edit/edit.compo
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
     NgxsModule.forRoot([
       RecipeState
     ]),
