@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { RecipeListUtil } from '../../../utils/recipe-list.util';
 import { RecipeState } from '../../../store/recipe.state';
 import { ActivatedRoute } from '@angular/router';
-import { Recipe } from '../../../interfaces/recipe.interface';
+import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 
 @Component({
   selector: 'app-detail',

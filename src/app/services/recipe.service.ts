@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Recipe } from '../interfaces/recipe.interface';
-import { map } from 'rxjs/operators';
+import { Recipe } from '../interfaces/recipe/recipe.interface';
+import { map, tap } from 'rxjs/operators';
 import { RecipeMapper } from '../mappers/recipe.mapper';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 import { RecipeUtil } from '../utils/recipe.util';
 
 @Injectable()
 export class RecipeService {
-
+  cache: Observable<Recipe>;
   callbackUrl = 'http://localhost:3000/recipes';
 
   constructor(private http: HttpClient) {

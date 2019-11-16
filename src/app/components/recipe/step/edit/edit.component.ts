@@ -6,7 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators
 } from '@angular/forms';
-import { Step } from '../../../interfaces/step.interface';
+import { Step } from '../../../../interfaces/recipe/step.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

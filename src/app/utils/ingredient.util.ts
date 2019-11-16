@@ -1,4 +1,4 @@
-import { Ingredient } from '../interfaces/ingredient.interface';
+import { Ingredient } from '../interfaces/recipe/ingredient.interface';
 
 export class IngredientUtil {
 

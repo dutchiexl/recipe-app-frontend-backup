@@ -1,22 +1,29 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { LoadRecipesAction, UpdateOrCreateRecipeAction } from './recipe.actions';
-import { Recipe } from '../interfaces/recipe.interface';
+import { LoadMealPlansAction, LoadRecipesAction, UpdateOrCreateRecipeAction } from './recipe.actions';
+import { Recipe } from '../interfaces/recipe/recipe.interface';
 import produce from 'immer';
 import { RecipeService } from '../services/recipe.service';
+import { MealPlan } from '../interfaces/planner/meal-plan';
+import { MealPlanService } from '../services/meal-plan.service';
 
 export interface RecipeStateModel {
   recipes: Recipe[];
+  mealPlans: MealPlan[];
 }
 
 @State<RecipeStateModel>({
   name: 'recipe',
   defaults: {
-    recipes: []
+    recipes: [],
+    mealPlans: []
   }
 })
 export class RecipeState {
 
-  constructor(private recipeService: RecipeService) {
+  constructor(
+    private recipeService: RecipeService,
+    private mealPlanService: MealPlanService,
+  ) {
   }
 
   @Selector()
@@ -29,12 +36,28 @@ export class RecipeState {
     return state.recipes;
   }
 
+  @Selector()
+  public static getMealPlans(state: RecipeStateModel): MealPlan[] {
+    return state.mealPlans;
+  }
+
   @Action(LoadRecipesAction)
   public loadRecipes(ctx: StateContext<RecipeStateModel>, {}: LoadRecipesAction) {
     this.recipeService.getRecipes().subscribe((recipes) => {
       ctx.setState(
         produce(ctx.getState(), (draft) => {
           draft.recipes = recipes;
+        }),
+      );
+    });
+  }
+
+  @Action(LoadMealPlansAction)
+  public loadMealPlans(ctx: StateContext<RecipeStateModel>, {}: LoadMealPlansAction) {
+    this.mealPlanService.getAll().subscribe((mealPlans) => {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.mealPlans = mealPlans;
         }),
       );
     });

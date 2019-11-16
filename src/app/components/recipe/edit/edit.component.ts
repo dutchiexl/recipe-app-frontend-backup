@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Recipe } from '../../../interfaces/recipe.interface';
+import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { RecipeUtil } from '../../../utils/recipe.util';
 import { Store } from '@ngxs/store';
 import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';

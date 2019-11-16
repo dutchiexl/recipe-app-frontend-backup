@@ -34,6 +34,15 @@
       "equipment": []
     }
   ],
+  "meal_plans": [
+    {
+      "id": 1,
+      "name": "Week 1",
+      "recipes": [
+        1
+      ]
+    }
+  ],
   "units": [
     {
       "id": 1,

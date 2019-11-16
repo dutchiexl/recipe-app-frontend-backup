@@ -1,5 +1,5 @@
 import { RawStep } from '../interfaces/api/raw-step.interface';
-import { Step } from '../interfaces/step.interface';
+import { Step } from '../interfaces/recipe/step.interface';
 
 export class StepMapper {
 

@@ -6,7 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators
 } from '@angular/forms';
-import { Ingredient } from '../../../interfaces/ingredient.interface';
+import { Ingredient } from '../../../../interfaces/recipe/ingredient.interface';
 
 @Component({
   selector: 'app-edit-ingredient',

@@ -1,4 +1,4 @@
-import { Recipe } from '../interfaces/recipe.interface';
+import { Recipe } from '../interfaces/recipe/recipe.interface';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 import { StepMapper } from './step.mapper';
 import { IngredientMapper } from './ingredient.mapper';

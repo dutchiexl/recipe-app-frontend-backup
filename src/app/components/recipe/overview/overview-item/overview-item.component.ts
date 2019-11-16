@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recipe } from '../../../../interfaces/recipe.interface';
+import { Recipe } from '../../../../interfaces/recipe/recipe.interface';
 
 @Component({
   selector: 'app-overview-item',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Step } from '../../interfaces/step.interface';
+import { Step } from '../../../interfaces/recipe/step.interface';
 
 @Component({
   selector: 'app-step',
