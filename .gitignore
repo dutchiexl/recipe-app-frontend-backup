@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 
 src/assets
+node-server/public

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule, MatDividerModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatToolbarModule
 } from '@angular/material';
@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/recipe/edit/edit.component';
 import { EditIngredientComponent } from './components/ingredient/edit/edit.component';
 import { EditStepComponent } from './components/step/edit/edit.component';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,8 @@ import { EditStepComponent } from './components/step/edit/edit.component';
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
+    MatIconModule,
+    EcoFabSpeedDialModule,
     NgxsModule.forRoot([
       RecipeState
     ]),

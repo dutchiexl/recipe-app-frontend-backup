@@ -7,6 +7,7 @@ import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';
 import { StepUtil } from '../../../utils/step.util';
 import { IngredientUtil } from '../../../utils/ingredient.util';
 import { HttpClient } from '@angular/common/http';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-edit',
@@ -18,7 +19,7 @@ export class EditComponent implements OnInit {
   form: FormGroup;
   ingredientFormGroup: FormArray = new FormArray([]);
   stepFormGroup: FormArray = new FormArray([]);
-  preview = '/assets/images/placeholder.png';
+  preview = '/images/placeholder.png';
   @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
   constructor(
@@ -49,6 +50,7 @@ export class EditComponent implements OnInit {
       this.recipe.steps = this.form.get('steps').value;
       this.recipe.imagePath = this.form.get('imagePath').value;
       this.store.dispatch(new UpdateOrCreateRecipeAction(this.recipe));
+      this.store.dispatch(new Navigate(['/']))
     }
   }
 
@@ -85,7 +87,7 @@ export class EditComponent implements OnInit {
       .subscribe((response) => {
         let filename = response['fileName'].split('/');
         this.form.patchValue({
-          imagePath: '/assets/images/'+filename[filename.length - 1]
+          imagePath: '/images/' + filename[filename.length - 1]
         });
         this.form.get('imagePath').updateValueAndValidity();
         console.log(this.form.get('imagePath').value);

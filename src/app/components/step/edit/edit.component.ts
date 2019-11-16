@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Step } from '../../../interfaces/step.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-step',
@@ -23,10 +24,14 @@ import { Step } from '../../../interfaces/step.interface';
 export class EditStepComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input() step: Step;
   stepItemFormgroup: FormGroup;
+  preview = '/images/placeholder.png';
+  @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
   onChange = (step: Step) => {};
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -63,5 +68,29 @@ export class EditStepComponent implements ControlValueAccessor, OnChanges, OnIni
     this.step.text = this.stepItemFormgroup.get('text').value;
     this.step.imagePath = this.stepItemFormgroup.get('imagePath').value;
     this.onChange(this.step);
+  }
+
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+
+    let formData = new FormData();
+    formData.append('image', file);
+
+    this.http.post('/api/upload', formData)
+      .subscribe((response) => {
+        let filename = response['fileName'].split('/');
+        this.stepItemFormgroup.patchValue({
+          imagePath: '/images/' + filename[filename.length - 1]
+        });
+        this.stepItemFormgroup.get('imagePath').updateValueAndValidity();
+        console.log(this.stepItemFormgroup.get('imagePath').value);
+      })
   }
 }

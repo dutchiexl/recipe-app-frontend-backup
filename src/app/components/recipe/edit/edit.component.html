@@ -2,7 +2,7 @@
   <div class="recipe-detail">
     <div class="header-image">
       <img src="{{ preview }}" alt="header" (click)="fileInput.click()">
-      <input type="file" id="avatar" (change)="uploadFile($event)" #fileInput class="hidden">
+      <input type="file" (change)="uploadFile($event)" #fileInput class="hidden">
     </div>
     <mat-divider></mat-divider>
     <div class="head">
@@ -55,8 +55,11 @@
       </div>
     </div>
   </div>
-  <mat-divider></mat-divider>
-  <div class="actions container">
-    <button mat-raised-button color="primary" class="submit-form">verzenden</button>
-  </div>
+  <eco-fab-speed-dial>
+    <eco-fab-speed-dial-trigger>
+      <button mat-fab color="primary">
+        <mat-icon>done</mat-icon>
+      </button>
+    </eco-fab-speed-dial-trigger>
+  </eco-fab-speed-dial>
 </form>

@@ -5,3 +5,16 @@
     (click)="goToRecipe(recipe)"
   ></app-overview-item>
 </div>
+<eco-fab-speed-dial>
+  <eco-fab-speed-dial-trigger>
+    <button mat-fab color="primary">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </eco-fab-speed-dial-trigger>
+
+  <eco-fab-speed-dial-actions>
+    <button mat-mini-fab color="primary" (click)="createRecipe()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </eco-fab-speed-dial-actions>
+</eco-fab-speed-dial>

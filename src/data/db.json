@@ -5,18 +5,18 @@
       "name": "Filipijnse peperkip",
       "nameAddition": "met gestoofde groenten en rijst",
       "description": "Een van de bekendste filipijnse recepten",
-      "imagePath": "assets/images/filipijnse-kip/filipino-chicken.jpg",
+      "imagePath": "images/filipijnse-kip/filipino-chicken.jpg",
       "creationDate": "01-01-2019",
       "steps": [
         {
           "name": "Aardappels roosteren",
           "text": "Verwarm de oven voor op 220°C. Boen de aardappels schoon en snijd ze in partjes. Leg de aardappels op een bakplaat met bakpapier en hussel ze om met 1el olijfolie, 1/4-1/2tl zout en peper. Rooster de aardappels in ca. 20 min goudbruin en gaar. Hussel na 10 min een keer om",
-          "imagePath": "assets/images/filipijnse-kip/potatoes.jpg"
+          "imagePath": "images/filipijnse-kip/potatoes.jpg"
         },
         {
           "name": "Pijnboompitten roosteren",
           "text": "Verhit een middelgrote, droge koekenpan op middlehoog vuur en rooster de pijnboompitten in 2-3 min goudbruin. Let op, de pitten kunnen snel verbranden. Neem uit de pan en zet appart",
-          "imagePath": "assets/images/filipijnse-kip/pine.jpg"
+          "imagePath": "images/filipijnse-kip/pine.jpg"
         }
       ],
       "ingredients": [
@@ -32,79 +32,6 @@
       ],
       "nutrients": [],
       "equipment": []
-    },
-    {
-      "name": "a",
-      "nameAddition": "a",
-      "description": "a",
-      "steps": [
-        {
-          "name": "a",
-          "text": "a",
-          "imagePath": ""
-        }
-      ],
-      "ingredients": [
-        {
-          "name": "df",
-          "amount": "20"
-        }
-      ],
-      "imagePath": "assets/images/Opchvp-xQcOH9Fj5mUe163Zl.png",
-      "creationDate": "2019-11-11T22:40:49.214Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 2
-    },
-    {
-      "name": "dsf",
-      "nameAddition": "ds",
-      "description": "f",
-      "steps": [
-        {
-          "name": "sf",
-          "text": "fds",
-          "imagePath": ""
-        }
-      ],
-      "ingredients": [
-        {
-          "name": "sdqd",
-          "amount": "20"
-        }
-      ],
-      "imagePath": "/assets/images/wJrhihY-jnK-fvWy26CPpU2M.jpg",
-      "creationDate": "2019-11-11T22:52:22.397Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 3
-    },
-    {
-      "name": "Test",
-      "nameAddition": "tes",
-      "description": "test",
-      "steps": [
-        {
-          "name": "Koken",
-          "text": "Kook de kip",
-          "imagePath": ""
-        }
-      ],
-      "ingredients": [
-        {
-          "name": "Kip",
-          "amount": "500"
-        },
-        {
-          "name": "Sla",
-          "amount": "1"
-        }
-      ],
-      "imagePath": "/assets/images/-dMglzaQ1Dpd5FKnodqHOnI6.jpg",
-      "creationDate": "2019-11-12T08:51:46.054Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 4
     }
   ],
   "units": [

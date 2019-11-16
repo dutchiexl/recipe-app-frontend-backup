@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "@ecodev/fab-speed-dial": "^4.0.0",
     "@ngxs/logger-plugin": "^3.5.1",
     "@ngxs/router-plugin": "^3.5.1",
     "@ngxs/schematics": "^0.0.1-alpha.5",

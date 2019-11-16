@@ -24,4 +24,8 @@ export class OverviewComponent implements OnInit {
   goToRecipe(recipe: Recipe) {
     this.store.dispatch(new Navigate(['/recipe', recipe.id]))
   }
+
+  createRecipe() {
+    this.store.dispatch(new Navigate(['/create-recipe']))
+  }
 }
