@@ -1,9 +1,9 @@
-<div class="recipe-detail" *ngIf="recipe">
+<div class="recipe-detail container" *ngIf="recipe">
   <div class="header-image">
     <img *ngIf="recipe.imagePath" src="{{recipe.imagePath}}" alt="header">
   </div>
-  <div class="head">
-    <div class="name">
+  <div class="head flex-row">
+    <div class="name columns-6">
       <h1>
         {{ recipe.name }}
       </h1>
@@ -11,12 +11,12 @@
         {{ recipe.nameAddition }}
       </h2>
     </div>
-    <div class="description">
+    <div class="description columns-6">
       {{recipe.description }}
     </div>
   </div>
-  <div class="details container">
-    <div class="info">
+  <div class="details flex-row">
+    <div class="info columns-2">
       <div class="ingredients">
         <h3>
           Ingredienten
@@ -26,7 +26,7 @@
         </ul>
       </div>
     </div>
-    <div class="steps list-overview columns-3">
+    <div class="steps list-overview columns-10">
       <app-step class="list-item" *ngFor="let step of recipe.steps" [step]="step"></app-step>
     </div>
   </div>

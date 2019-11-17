@@ -32,6 +32,58 @@
       ],
       "nutrients": [],
       "equipment": []
+    },
+    {
+      "name": "Tagliatelle met courgette",
+      "nameAddition": "in tomatenroomsaus met pangratto",
+      "description": "Pangratto is het italiaanse woord voor broodkruim en vandaag maak je een heerlijke crunchy topping van panko",
+      "steps": [
+        {
+          "name": "Groenten snijden",
+          "text": "Breng water in een waterkoker aan de kook voor de pasta. Pel en hak de knoflook fijn. Snijd de courgette in de lengte doormidden en dan in dunne plakjes. Verwijder eventueele houterige puntjes van de peultjes. Hak de gedroogde tomaten grof",
+          "imagePath": ""
+        },
+        {
+          "name": "Pasta koken",
+          "text": "Doe het zojuist gekookte water met 1tl zout in een grote kookpot. Breng het water opnieuw aan de kook en voeg de tagliatelle toe. Kook de pasta in 7-9 minuten beetgaar. vang bij het afgieten 200ml kookwater op en doe de pasta gemengd met een scheutje olijfolie terug in de pan",
+          "imagePath": ""
+        }
+      ],
+      "ingredients": [
+        {
+          "name": "tagliatelle",
+          "amount": "250"
+        },
+        {
+          "name": "knoflook",
+          "amount": "1"
+        },
+        {
+          "name": "courgette",
+          "amount": "1"
+        },
+        {
+          "name": "peultjes",
+          "amount": "500"
+        },
+        {
+          "name": "walnoten",
+          "amount": "1"
+        },
+        {
+          "name": null,
+          "amount": null
+        },
+        {
+          "name": null,
+          "amount": null
+        }
+      ],
+      "imagePath": "/images/RkB8tEJy4RxupyhNQ_4MeZeo.jpeg",
+      "creationDate": "2019-11-17T15:15:29.672Z",
+      "equipment": [],
+      "nutrients": [],
+      "id": 2
     }
   ],
   "meal_plans": [
@@ -56,6 +108,20 @@
       "name": "Week 4",
       "recipes": [],
       "id": 4
+    },
+    {
+      "name": "Week 4",
+      "recipes": [
+        1
+      ],
+      "id": 5
+    },
+    {
+      "name": "Week 6",
+      "recipes": [
+        1
+      ],
+      "id": 6
     }
   ],
   "units": [

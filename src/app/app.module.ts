@@ -8,7 +8,7 @@ import {
   MatButtonModule,
   MatCardModule, MatDividerModule,
   MatFormFieldModule, MatIconModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatToolbarModule
 } from '@angular/material';
 import { OverviewComponent } from './components/recipe/overview/overview.component';
@@ -64,6 +64,7 @@ import { PlannerEditComponent } from './components/planner/planner-edit/planner-
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    MatListModule,
     EcoFabSpeedDialModule,
     NgxsModule.forRoot([
       RecipeState

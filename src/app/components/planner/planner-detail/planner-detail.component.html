@@ -1,5 +1,5 @@
-<div class="recipe-detail" *ngIf="mealPlan">
-  <div class="head">
+<div class="recipe-detail container" *ngIf="mealPlan">
+  <div class="head flex-row">
     <div class="name">
       <h1>
         {{ mealPlan.name }}
@@ -8,7 +8,7 @@
     <div class="description">
     </div>
   </div>
-  <div class="list-overview container top-spacing">
+  <div class="list-overview flex-row top-spacing">
     <app-overview-item
       class="list-item clickable"
       *ngFor="let recipe of mealPlan.recipes" [recipe]="recipe"

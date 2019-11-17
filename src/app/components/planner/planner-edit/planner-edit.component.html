@@ -1,21 +1,33 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()">
-  <div class="">
-    <mat-divider></mat-divider>
-    <div class="head">
-      <div class="name">
-        <mat-form-field>
-          <input matInput formControlName="name" placeholder="Naam">
-        </mat-form-field>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="picked-recipes">
-      <app-overview-item *ngFor="let recipe of mealPlan.recipes" [recipe]="recipe"></app-overview-item>
-    </div>
-    <div class="details container">
-      <app-overview-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-overview-item>
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="container">
+  <div class="head">
+    <div class="name">
+      <mat-form-field>
+        <input matInput formControlName="name" placeholder="Naam">
+      </mat-form-field>
     </div>
   </div>
+  <div class="grid">
+    <mat-divider></mat-divider>
+      <div class="one-fourth">
+        <mat-list>
+          <mat-list-item
+            *ngFor="let recipe of mealPlan.recipes"
+            (click)="removeRecipeFromMealPlan(recipe)"
+          >
+            <app-overview-item [recipe]="recipe"></app-overview-item>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="three-fourth list-overview container top-spacing">
+        <app-overview-item
+          class="list-item clickable"
+          *ngFor="let recipe of filteredRecipes"
+          [recipe]="recipe"
+          (click)="addRecipeToMealPlan(recipe)"
+        >
+        </app-overview-item>
+      </div>
+    </div>
   <eco-fab-speed-dial>
     <eco-fab-speed-dial-trigger>
       <button mat-fab color="primary">
