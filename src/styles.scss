@@ -53,6 +53,7 @@ body {
   flex-wrap: wrap;
   margin-left: -10px;
   margin-right: -10px;
+  width: 100%;
 
   .list-item {
     flex: 1 0 calc(25% - 20px);
@@ -148,5 +149,34 @@ eco-fab-speed-dial {
 
   h2 {
     font-weight: normal;
+  }
+}
+
+mat-list {
+  &.flex {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0;
+
+    .mat-list-item {
+      display: flex;
+      height: auto;
+      flex: 0 0 100%;
+      margin-bottom: 20px;
+
+      .mat-card-header-text {
+        font-size: 0.7rem;
+        margin: 0;
+      }
+
+      .list-item {
+        padding-bottom: 0;
+      }
+
+      img {
+        height: 50px;
+        object-fit: cover;
+      }
+    }
   }
 }

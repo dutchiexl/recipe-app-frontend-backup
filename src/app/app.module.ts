@@ -33,6 +33,7 @@ import { PlannerOverviewItemComponent } from './components/planner/planner-overv
 import { PlannerDetailComponent } from './components/planner/planner-detail/planner-detail.component';
 import { MealPlanService } from './services/meal-plan.service';
 import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
+import { RecipeListItemComponent } from './components/recipe/recipe-list-item/recipe-list-item.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PlannerEditComponent } from './components/planner/planner-edit/planner-
     PlannerOverviewComponent,
     PlannerOverviewItemComponent,
     PlannerDetailComponent,
-    PlannerEditComponent
+    PlannerEditComponent,
+    RecipeListItemComponent
   ],
   imports: [
     BrowserModule,
