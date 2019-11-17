@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="">
+    <mat-divider></mat-divider>
+    <div class="head">
+      <div class="name">
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Naam">
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="picked-recipes">
+      <app-overview-item *ngFor="let recipe of mealPlan.recipes" [recipe]="recipe"></app-overview-item>
+    </div>
+    <div class="details container">
+      <app-overview-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-overview-item>
+    </div>
+  </div>
+  <eco-fab-speed-dial>
+    <eco-fab-speed-dial-trigger>
+      <button mat-fab color="primary">
+        <mat-icon>done</mat-icon>
+      </button>
+    </eco-fab-speed-dial-trigger>
+  </eco-fab-speed-dial>
+</form>

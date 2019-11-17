@@ -32,6 +32,7 @@ import { PlannerOverviewComponent } from './components/planner/planner-overview/
 import { PlannerOverviewItemComponent } from './components/planner/planner-overview/planner-overview-item/planner-overview-item.component';
 import { PlannerDetailComponent } from './components/planner/planner-detail/planner-detail.component';
 import { MealPlanService } from './services/meal-plan.service';
+import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MealPlanService } from './services/meal-plan.service';
     EditStepComponent,
     PlannerOverviewComponent,
     PlannerOverviewItemComponent,
-    PlannerDetailComponent
+    PlannerDetailComponent,
+    PlannerEditComponent
   ],
   imports: [
     BrowserModule,

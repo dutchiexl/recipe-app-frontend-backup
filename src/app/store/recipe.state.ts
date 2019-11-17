@@ -1,5 +1,10 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { LoadMealPlansAction, LoadRecipesAction, UpdateOrCreateRecipeAction } from './recipe.actions';
+import {
+  LoadMealPlansAction,
+  LoadRecipesAction,
+  UpdateOrCreateMealPlanAction,
+  UpdateOrCreateRecipeAction
+} from './recipe.actions';
 import { Recipe } from '../interfaces/recipe/recipe.interface';
 import produce from 'immer';
 import { RecipeService } from '../services/recipe.service';
@@ -67,6 +72,13 @@ export class RecipeState {
   public updateOrCreateRecipe(ctx: StateContext<RecipeStateModel>, action: UpdateOrCreateRecipeAction) {
     this.recipeService.create(action.recipe).subscribe(() => {
       ctx.dispatch(new LoadRecipesAction());
+    });
+  }
+
+  @Action(UpdateOrCreateMealPlanAction)
+  public updateOrCreateMealPlan(ctx: StateContext<RecipeStateModel>, action: UpdateOrCreateMealPlanAction) {
+    this.mealPlanService.create(action.mealPlan).subscribe(() => {
+      ctx.dispatch(new LoadMealPlansAction());
     });
   }
 }
