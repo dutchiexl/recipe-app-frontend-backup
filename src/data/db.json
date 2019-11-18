@@ -6,7 +6,7 @@
       "nameAddition": "met gestoofde groenten en rijst",
       "description": "Een van de bekendste filipijnse recepten",
       "imagePath": "images/filipijnse-kip/filipino-chicken.jpg",
-      "creationDate": "01-01-2019",
+      "creationDate": "2019-11-18T10:10:31.742Z",
       "steps": [
         {
           "name": "Aardappels roosteren",
@@ -22,12 +22,15 @@
       "ingredients": [
         {
           "name": "Pijnboompitten",
-          "amount": 5,
-          "unit": 3
+          "amount": 5
         },
         {
-          "name": "courgette",
+          "name": "courgetten",
           "amount": 1
+        },
+        {
+          "name": "wortelen",
+          "amount": "20"
         }
       ],
       "nutrients": [],

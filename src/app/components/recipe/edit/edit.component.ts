@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { RecipeState } from '../../../store/recipe.state';
 import { RecipeListUtil } from '../../../utils/recipe-list.util';
 import { ActivatedRoute } from '@angular/router';
+import { Step } from '../../../interfaces/recipe/step.interface';
+import { Ingredient } from '../../../interfaces/recipe/ingredient.interface';
 
 @Component({
   selector: 'app-edit',
@@ -80,8 +82,8 @@ export class EditComponent implements OnInit {
       recipeToSubmit.name = this.form.get('name').value;
       recipeToSubmit.nameAddition = this.form.get('nameAddition').value;
       recipeToSubmit.description = this.form.get('description').value;
-      recipeToSubmit.ingredients = this.form.get('ingredients').value;
-      recipeToSubmit.steps = this.form.get('steps').value;
+      recipeToSubmit.ingredients = this.cleanIngredients(this.form.get('ingredients').value);
+      recipeToSubmit.steps = this.cleanSteps(this.form.get('steps').value);
       recipeToSubmit.imagePath = this.form.get('imagePath').value;
 
       if (this.recipe.id) {
@@ -128,5 +130,17 @@ export class EditComponent implements OnInit {
         this.form.get('imagePath').updateValueAndValidity();
         console.log(this.form.get('imagePath').value);
       })
+  }
+
+  private cleanIngredients(ingredients: Ingredient[]) {
+    return ingredients.filter((ingredient) => {
+      return !!ingredient.name && !!ingredient.amount;
+    })
+  }
+
+  private cleanSteps(steps: Step[]) {
+    return steps.filter((step) => {
+      return !!step.text && !!step.name;
+    })
   }
 }
