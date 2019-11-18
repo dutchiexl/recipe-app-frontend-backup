@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()">
+<form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="recipe">
   <div class="recipe-detail">
     <div class="header-image">
       <img src="{{ preview }}" alt="header" (click)="fileInput.click()">

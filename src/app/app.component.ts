@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { RecipeState } from './store/recipe.state';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recepten';
+  isLoaded = false;
+
+  constructor(private store: Store) {
+    store.select(RecipeState.getLoadedState).subscribe((state) => {
+      this.isLoaded = state;
+    });
+  }
 }

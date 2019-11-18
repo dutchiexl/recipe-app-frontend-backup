@@ -60,7 +60,6 @@ export class EditStepComponent implements ControlValueAccessor, OnChanges, OnIni
   }
 
   writeValue(obj: any): void {
-    this.onChange(obj);
   }
 
   updateStep(event: Event) {

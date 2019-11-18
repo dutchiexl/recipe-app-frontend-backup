@@ -7,7 +7,9 @@ import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';
 import { StepUtil } from '../../../utils/step.util';
 import { IngredientUtil } from '../../../utils/ingredient.util';
 import { HttpClient } from '@angular/common/http';
-import { Navigate } from '@ngxs/router-plugin';
+import { RecipeState } from '../../../store/recipe.state';
+import { RecipeListUtil } from '../../../utils/recipe-list.util';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -25,44 +27,78 @@ export class EditComponent implements OnInit {
   constructor(
     private store: Store,
     private http: HttpClient,
-    private formBuilder: FormBuilder
-  ) {
-    this.recipe = RecipeUtil.createEmpty();
-  }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    let recipeIdParameter = this.route.snapshot.paramMap.get('recipeId');
+    if (recipeIdParameter) {
+      let recipeIdParameter = this.route.snapshot.paramMap.get('recipeId');
+      let recipeId = Number(recipeIdParameter);
+      this.recipe = RecipeListUtil.findRecipeById(this.store.selectSnapshot(RecipeState.getRecipes), recipeId);
+
+      if (this.recipe) {
+        if (this.recipe.imagePath) {
+          this.preview = this.recipe.imagePath;
+        }
+      }
+    } else {
+      this.recipe = RecipeUtil.createEmpty();
+    }
+    this.createForm();
+    this.createIngredientForm();
+    this.createStepsForm();
+  }
+
+  private createForm() {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      nameAddition: ['', Validators.required],
-      description: ['', Validators.required],
-      imagePath: [null, Validators.required],
+      name: [this.recipe.name, Validators.required],
+      nameAddition: [this.recipe.nameAddition, Validators.required],
+      description: [this.recipe.description, Validators.required],
+      imagePath: [this.recipe.imagePath, Validators.required],
       ingredients: this.ingredientFormGroup,
       steps: this.stepFormGroup
     });
   }
 
+  private createIngredientForm() {
+    this.recipe.ingredients.forEach((ingredient) => {
+      this.ingredientFormGroup.push(new FormControl(ingredient, Validators.required));
+    });
+  }
+
+  private createStepsForm() {
+    this.recipe.steps.forEach((step) => {
+      this.stepFormGroup.push(new FormControl(step, Validators.required));
+    });
+  }
+
   submitForm() {
     if (this.form.valid) {
-      this.recipe.name = this.form.get('name').value;
-      this.recipe.nameAddition = this.form.get('nameAddition').value;
-      this.recipe.description = this.form.get('description').value;
-      this.recipe.ingredients = this.form.get('ingredients').value;
-      this.recipe.steps = this.form.get('steps').value;
-      this.recipe.imagePath = this.form.get('imagePath').value;
-      this.store.dispatch(new UpdateOrCreateRecipeAction(this.recipe));
-      this.store.dispatch(new Navigate(['/']))
+      let recipeToSubmit = RecipeUtil.createEmpty();
+      recipeToSubmit.name = this.form.get('name').value;
+      recipeToSubmit.nameAddition = this.form.get('nameAddition').value;
+      recipeToSubmit.description = this.form.get('description').value;
+      recipeToSubmit.ingredients = this.form.get('ingredients').value;
+      recipeToSubmit.steps = this.form.get('steps').value;
+      recipeToSubmit.imagePath = this.form.get('imagePath').value;
+
+      if (this.recipe.id) {
+        recipeToSubmit.id = this.recipe.id;
+      }
+
+      this.store.dispatch(new UpdateOrCreateRecipeAction(recipeToSubmit));
     }
   }
 
   addIngredient() {
     const ingredient = IngredientUtil.createEmpty();
-    this.recipe.ingredients.push(ingredient);
     this.ingredientFormGroup.push(new FormControl(ingredient, Validators.required));
   }
 
   addStep() {
     const step = StepUtil.createEmpty();
-    this.recipe.steps.push(StepUtil.createEmpty());
     this.stepFormGroup.push(new FormControl(step, Validators.required));
   }
 

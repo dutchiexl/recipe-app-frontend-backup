@@ -1,6 +1,12 @@
 import { Recipe } from '../interfaces/recipe/recipe.interface';
 import { MealPlan } from '../interfaces/planner/meal-plan';
 
+export class LoadApplication {
+  public static readonly type = '[Recipe] Load Application';
+
+  constructor() { }
+}
+
 export class LoadRecipesAction {
   public static readonly type = '[Recipe] Load recipes';
 

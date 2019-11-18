@@ -4,6 +4,7 @@ import { RecipeListUtil } from '../../../utils/recipe-list.util';
 import { RecipeState } from '../../../store/recipe.state';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-detail',
@@ -27,5 +28,9 @@ export class DetailComponent implements OnInit {
         this.recipe = RecipeListUtil.findRecipeById(this.recipes, recipeId);
       });
     });
+  }
+
+  editRecipe(recipe: Recipe) {
+    this.store.dispatch(new Navigate(['/edit-recipe', this.recipe.id]))
   }
 }

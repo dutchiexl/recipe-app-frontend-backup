@@ -19,7 +19,7 @@ import { RecipeState } from './store/recipe.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { StepComponent } from './components/recipe/step/step.component';
-import { LoadMealPlansAction, LoadRecipesAction } from './store/recipe.actions';
+import { LoadApplication, LoadMealPlansAction, LoadRecipesAction } from './store/recipe.actions';
 import { IngredientComponent } from './components/recipe/ingredient/ingredient.component';
 import { RecipeService } from './services/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -83,7 +83,6 @@ import { RecipeListItemComponent } from './components/recipe/recipe-list-item/re
 export class AppModule {
 
   constructor(private store: Store) {
-    store.dispatch(new LoadRecipesAction());
-    store.dispatch(new LoadMealPlansAction());
+    store.dispatch(new LoadApplication());
   }
 }

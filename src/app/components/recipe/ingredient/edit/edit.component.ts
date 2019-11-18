@@ -7,6 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Ingredient } from '../../../../interfaces/recipe/ingredient.interface';
+import { IngredientUtil } from '../../../../utils/ingredient.util';
 
 @Component({
   selector: 'app-edit-ingredient',
@@ -22,6 +23,7 @@ import { Ingredient } from '../../../../interfaces/recipe/ingredient.interface';
 })
 export class EditIngredientComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input() ingredient: Ingredient;
+  formIngredient: Ingredient = IngredientUtil.createEmpty();
   @Output() addIngredient = new EventEmitter();
   ingredientItemForm: FormGroup;
 
@@ -31,19 +33,18 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   ngOnInit() {
-    const name = this.ingredient.name ? this.ingredient.name : null;
-    const unit = this.ingredient.quantifier ? this.ingredient.quantifier : null;
-    const amount = this.ingredient.amount ? this.ingredient.amount : null;
+    this.formIngredient.name = this.ingredient.name ? this.ingredient.name.toString() : null;
+    this.formIngredient.quantifier = this.ingredient.quantifier ? this.ingredient.quantifier.toString() : null;
+    this.formIngredient.amount = this.ingredient.amount ? Number(this.ingredient.amount) : null;
 
     this.ingredientItemForm = this.formBuilder.group({
-      name: [name, Validators.required],
-      unit: [unit, Validators.required],
-      amount: [amount, [Validators.required]]
+      name: [this.formIngredient.name, Validators.required],
+      unit: [this.formIngredient.quantifier, Validators.required],
+      amount: [this.formIngredient.amount, [Validators.required]]
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 
   registerOnChange(fn: any): void {
@@ -57,13 +58,13 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   writeValue(obj: any): void {
-    this.onChange(obj);
+    //this.onChange(obj);
   }
 
   updateIngredient(event: Event) {
-    this.ingredient.name = this.ingredientItemForm.get('name').value;
-    this.ingredient.quantifier = this.ingredientItemForm.get('unit').value;
-    this.ingredient.amount = this.ingredientItemForm.get('amount').value;
-    this.onChange(this.ingredient);
+    this.formIngredient.name = this.ingredientItemForm.get('name').value;
+    this.formIngredient.quantifier = this.ingredientItemForm.get('unit').value;
+    this.formIngredient.amount = this.ingredientItemForm.get('amount').value;
+    this.onChange(this.formIngredient);
   }
 }
