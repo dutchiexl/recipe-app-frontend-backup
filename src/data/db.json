@@ -82,18 +82,10 @@
         {
           "name": "worst",
           "amount": "15"
-        },
-        {
-          "name": null,
-          "amount": null
-        },
-        {
-          "name": null,
-          "amount": null
         }
       ],
       "imagePath": "/images/RkB8tEJy4RxupyhNQ_4MeZeo.jpeg",
-      "creationDate": "2019-11-18T09:59:49.212Z",
+      "creationDate": "2019-11-18T10:11:49.953Z",
       "equipment": [],
       "nutrients": [],
       "id": 2
@@ -107,14 +99,10 @@
         {
           "name": "stuff",
           "amount": "15"
-        },
-        {
-          "name": null,
-          "amount": null
         }
       ],
       "imagePath": "/images/bZ5l5JnY5ppEtoey4aBiewNZ.jpeg",
-      "creationDate": "2019-11-18T10:02:26.023Z",
+      "creationDate": "2019-11-18T10:11:59.831Z",
       "equipment": [],
       "nutrients": [],
       "id": 3
@@ -124,36 +112,78 @@
       "nameAddition": "a",
       "description": "a",
       "steps": [],
-      "ingredients": [],
+      "ingredients": [
+        {
+          "name": "worst",
+          "amount": "5"
+        }
+      ],
       "imagePath": "/images/q2ehgFzNk58toyckuVVB1cuz.jpeg",
-      "creationDate": "2019-11-18T10:02:01.207Z",
+      "creationDate": "2019-11-18T10:11:06.685Z",
       "equipment": [],
       "nutrients": [],
       "id": 4
+    },
+    {
+      "name": "kljhskjh",
+      "nameAddition": "kjhkjh",
+      "description": "kjhkjh",
+      "steps": [
+        {
+          "name": "asdas",
+          "text": "ads",
+          "imagePath": "/images/Vaq1Ed60VmAeAXf-sU24DrdV.jpeg"
+        }
+      ],
+      "ingredients": [
+        {
+          "name": "worst",
+          "amount": "50"
+        },
+        {
+          "name": "water",
+          "amount": "20"
+        },
+        {
+          "name": "sdf",
+          "amount": "dsfds"
+        }
+      ],
+      "imagePath": "/images/5XzLUWuQQ9d-iGHYINkAa5UU.jpeg",
+      "creationDate": "2019-11-18T10:24:06.369Z",
+      "equipment": [],
+      "nutrients": [],
+      "id": 5
     }
   ],
   "meal_plans": [
     {
       "id": 1,
-      "name": "Week 1",
-      "recipes": [
-        1
-      ]
+      "name": "Weekjes",
+      "recipes": []
     },
     {
-      "name": "Week 2",
+      "name": "Weekjes",
       "recipes": [],
       "id": 2
     },
     {
-      "name": "Week 9",
+      "name": "Weekjes",
       "recipes": [
         2,
-        1,
+        4,
         3,
-        4
+        1
       ],
       "id": 3
+    },
+    {
+      "name": "Weekjes 2",
+      "recipes": [
+        2,
+        4
+      ],
+      "id": 4
     }
   ],
   "units": [

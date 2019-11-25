@@ -11,7 +11,7 @@
     <div class="columns-2">
       <mat-list class="flex">
         <mat-list-item
-          *ngFor="let recipe of mealPlan.recipes"
+          *ngFor="let recipe of mealPlanRecipes"
           (click)="removeRecipeFromMealPlan(recipe)"
         >
           <app-recipe-list-item [recipe]="recipe"></app-recipe-list-item>

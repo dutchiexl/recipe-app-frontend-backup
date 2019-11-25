@@ -20,8 +20,7 @@ export class MealPlanService {
   constructor(
     private http: HttpClient,
     private recipeService: RecipeService
-  ) {
-  }
+  ) {}
 
   getAll(): Observable<MealPlan[]> {
     return this.recipeService.getRecipes().pipe(
@@ -39,9 +38,7 @@ export class MealPlanService {
     return this.http.post(this.callbackUrl, MealPlanUtil.asJson(mealPlan));
   }
 
-  update(recipe: Recipe) {
-    this.http.patch(this.callbackUrl + '/' + recipe.id, RecipeUtil.recipeAsJSON(recipe))
-      .subscribe(() => {
-      });
+  update(mealPlan: MealPlan) {
+    return this.http.patch(this.callbackUrl + '/' + mealPlan.id, MealPlanUtil.asJson(mealPlan));
   }
 }

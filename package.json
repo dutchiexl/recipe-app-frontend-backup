@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json & json-server --watch src/data/db.json & cd node-server npm run start ",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "api": "cd node-server && node app.js",
+    "database": " json-server --watch src/data/db.json",
+    "app": "npm run start & npm run database & npm run api"
   },
   "private": true,
   "dependencies": {

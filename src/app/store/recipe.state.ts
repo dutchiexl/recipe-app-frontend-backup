@@ -13,6 +13,7 @@ import { MealPlan } from '../interfaces/planner/meal-plan';
 import { MealPlanService } from '../services/meal-plan.service';
 import { Navigate } from '@ngxs/router-plugin';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
+import { RawMealPlan } from '../interfaces/api/raw-meal.plan';
 
 export interface RecipeStateModel {
   isLoaded: boolean;
@@ -98,7 +99,6 @@ export class RecipeState {
       });
     } else {
       this.recipeService.create(action.recipe).subscribe((recipe: RawRecipe) => {
-        console.log(recipe);
         ctx.dispatch(new LoadRecipesAction());
         ctx.dispatch(new Navigate(['/recipe', recipe.id]))
       });
@@ -107,9 +107,18 @@ export class RecipeState {
 
   @Action(UpdateOrCreateMealPlanAction)
   public updateOrCreateMealPlan(ctx: StateContext<RecipeStateModel>, action: UpdateOrCreateMealPlanAction) {
-    this.mealPlanService.create(action.mealPlan).subscribe(() => {
-      ctx.dispatch(new LoadMealPlansAction());
-    });
+    if (action.mealPlan.id) {
+      this.mealPlanService.update(action.mealPlan).subscribe(() => {
+        console.log('updating');
+        ctx.dispatch(new LoadMealPlansAction());
+        ctx.dispatch(new Navigate(['/plan', action.mealPlan.id]))
+      });
+    } else {
+      this.mealPlanService.create(action.mealPlan).subscribe((mealPlan: RawMealPlan) => {
+        ctx.dispatch(new LoadMealPlansAction());
+        ctx.dispatch(new Navigate(['/plan', mealPlan.id]))
+      });
+    }
   }
 
   private checkLoadedState(ctx: StateContext<RecipeStateModel>): void {

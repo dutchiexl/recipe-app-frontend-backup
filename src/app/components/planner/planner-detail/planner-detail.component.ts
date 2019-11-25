@@ -34,4 +34,8 @@ export class PlannerDetailComponent implements OnInit {
   goToRecipe(recipe: Recipe) {
     this.store.dispatch(new Navigate(['/recipe', recipe.id]))
   }
+
+  editPlan() {
+    this.store.dispatch(new Navigate(['/edit-plan', this.mealPlan.id]))
+  }
 }
