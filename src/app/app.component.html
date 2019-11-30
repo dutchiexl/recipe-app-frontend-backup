@@ -1,9 +1,10 @@
 <mat-toolbar>
-  <a [routerLink]="['/']">
-    Recepten app
-  </a>
-  <a [routerLink]="['/planner']">
-    Planner
-  </a>
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">{{ mode }}</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="setMode(stateEnum.RECIPES)">Recepten</button>
+    <button mat-menu-item (click)="setMode(stateEnum.MEALPLANS)">Planner</button>
+  </mat-menu>
+
 </mat-toolbar>
 <router-outlet *ngIf="isLoaded"></router-outlet>

@@ -1,8 +1,10 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
-  LoadApplication,
+  DeleteMealPlanAction,
+  DeleteRecipeAction,
+  LoadApplicationAction,
   LoadMealPlansAction,
-  LoadRecipesAction,
+  LoadRecipesAction, SetModeAction,
   UpdateOrCreateMealPlanAction,
   UpdateOrCreateRecipeAction
 } from './recipe.actions';
@@ -14,8 +16,10 @@ import { MealPlanService } from '../services/meal-plan.service';
 import { Navigate } from '@ngxs/router-plugin';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 import { RawMealPlan } from '../interfaces/api/raw-meal.plan';
+import { AppModeEnum } from '../enums/app-mode.enum';
 
 export interface RecipeStateModel {
+  mode: AppModeEnum;
   isLoaded: boolean;
   recipes: Recipe[];
   mealPlans: MealPlan[];
@@ -24,6 +28,7 @@ export interface RecipeStateModel {
 @State<RecipeStateModel>({
   name: 'recipe',
   defaults: {
+    mode: AppModeEnum.RECIPES,
     isLoaded: false,
     recipes: null,
     mealPlans: null
@@ -43,6 +48,11 @@ export class RecipeState {
   }
 
   @Selector()
+  public static getMode(state: RecipeStateModel) {
+    return state.mode;
+  }
+
+  @Selector()
   public static getLoadedState(state: RecipeStateModel) {
     return state.isLoaded;
   }
@@ -57,8 +67,25 @@ export class RecipeState {
     return state.mealPlans;
   }
 
-  @Action(LoadApplication)
-  public loadAPI(ctx: StateContext<RecipeStateModel>, {}: LoadApplication) {
+  @Action(SetModeAction)
+  public setMode(ctx: StateContext<RecipeStateModel>, action: SetModeAction) {
+    ctx.setState(
+      produce(ctx.getState(), (draft) => {
+        draft.mode = action.mode;
+      }),
+    );
+    switch (action.mode) {
+      case AppModeEnum.RECIPES:
+        ctx.dispatch(new Navigate(['/']));
+        break;
+      case AppModeEnum.MEALPLANS:
+        ctx.dispatch(new Navigate(['/planner']));
+        break;
+    }
+  }
+
+  @Action(LoadApplicationAction)
+  public loadAPI(ctx: StateContext<RecipeStateModel>, {}: LoadApplicationAction) {
     this.setLoadedState(ctx, false);
     ctx.dispatch(new LoadRecipesAction());
     ctx.dispatch(new LoadMealPlansAction());
@@ -105,11 +132,18 @@ export class RecipeState {
     }
   }
 
+  @Action(DeleteRecipeAction)
+  public deleteRecipe(ctx: StateContext<RecipeStateModel>, action: DeleteRecipeAction) {
+    this.recipeService.delete(action.recipe).subscribe(() => {
+      ctx.dispatch(new LoadRecipesAction());
+      ctx.dispatch(new Navigate(['/']))
+    });
+  }
+
   @Action(UpdateOrCreateMealPlanAction)
   public updateOrCreateMealPlan(ctx: StateContext<RecipeStateModel>, action: UpdateOrCreateMealPlanAction) {
     if (action.mealPlan.id) {
       this.mealPlanService.update(action.mealPlan).subscribe(() => {
-        console.log('updating');
         ctx.dispatch(new LoadMealPlansAction());
         ctx.dispatch(new Navigate(['/plan', action.mealPlan.id]))
       });
@@ -119,6 +153,14 @@ export class RecipeState {
         ctx.dispatch(new Navigate(['/plan', mealPlan.id]))
       });
     }
+  }
+
+  @Action(DeleteMealPlanAction)
+  public deleteMealplan(ctx: StateContext<RecipeStateModel>, action: DeleteMealPlanAction) {
+    this.mealPlanService.delete(action.mealPlan).subscribe(() => {
+      ctx.dispatch(new LoadMealPlansAction());
+      ctx.dispatch(new Navigate(['/planner']))
+    });
   }
 
   private checkLoadedState(ctx: StateContext<RecipeStateModel>): void {

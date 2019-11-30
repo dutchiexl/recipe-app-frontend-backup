@@ -89,101 +89,16 @@
       "equipment": [],
       "nutrients": [],
       "id": 2
-    },
-    {
-      "name": "b",
-      "nameAddition": "b",
-      "description": "ab",
-      "steps": [],
-      "ingredients": [
-        {
-          "name": "stuff",
-          "amount": "15"
-        }
-      ],
-      "imagePath": "/images/bZ5l5JnY5ppEtoey4aBiewNZ.jpeg",
-      "creationDate": "2019-11-18T10:11:59.831Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 3
-    },
-    {
-      "name": "a",
-      "nameAddition": "a",
-      "description": "a",
-      "steps": [],
-      "ingredients": [
-        {
-          "name": "worst",
-          "amount": "5"
-        }
-      ],
-      "imagePath": "/images/q2ehgFzNk58toyckuVVB1cuz.jpeg",
-      "creationDate": "2019-11-18T10:11:06.685Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 4
-    },
-    {
-      "name": "kljhskjh",
-      "nameAddition": "kjhkjh",
-      "description": "kjhkjh",
-      "steps": [
-        {
-          "name": "asdas",
-          "text": "ads",
-          "imagePath": "/images/Vaq1Ed60VmAeAXf-sU24DrdV.jpeg"
-        }
-      ],
-      "ingredients": [
-        {
-          "name": "worst",
-          "amount": "50"
-        },
-        {
-          "name": "water",
-          "amount": "20"
-        },
-        {
-          "name": "sdf",
-          "amount": "dsfds"
-        }
-      ],
-      "imagePath": "/images/5XzLUWuQQ9d-iGHYINkAa5UU.jpeg",
-      "creationDate": "2019-11-18T10:24:06.369Z",
-      "equipment": [],
-      "nutrients": [],
-      "id": 5
     }
   ],
   "meal_plans": [
     {
-      "id": 1,
-      "name": "Weekjes",
-      "recipes": []
-    },
-    {
-      "name": "Weekjes",
-      "recipes": [],
-      "id": 2
-    },
-    {
-      "name": "Weekjes",
+      "name": "test",
       "recipes": [
         2,
-        4,
-        3,
         1
       ],
-      "id": 3
-    },
-    {
-      "name": "Weekjes 2",
-      "recipes": [
-        2,
-        4
-      ],
-      "id": 4
+      "id": 1
     }
   ],
   "units": [

@@ -6,6 +6,9 @@ import { RecipeState } from '../../../store/recipe.state';
 import { MealPlanListUtil } from '../../../utils/meal-plan-list.util';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { Navigate } from '@ngxs/router-plugin';
+import { MatDialog } from '@angular/material';
+import { ConfirmationComponent } from '../../confirmation/confirmation.component';
+import { DeleteMealPlanAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-planner-detail',
@@ -18,7 +21,8 @@ export class PlannerDetailComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -37,5 +41,17 @@ export class PlannerDetailComponent implements OnInit {
 
   editPlan() {
     this.store.dispatch(new Navigate(['/edit-plan', this.mealPlan.id]))
+  }
+
+  deletePlan() {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new DeleteMealPlanAction(this.mealPlan));
+      }
+    });
   }
 }

@@ -24,8 +24,11 @@
   </eco-fab-speed-dial-trigger>
 
   <eco-fab-speed-dial-actions>
+    <button mat-mini-fab color="warn" (click)="deletePlan()">
+      <mat-icon>delete</mat-icon>
+    </button>
     <button mat-mini-fab color="primary" (click)="editPlan()">
-      <mat-icon>add</mat-icon>
+      <mat-icon>edit</mat-icon>
     </button>
   </eco-fab-speed-dial-actions>
 </eco-fab-speed-dial>

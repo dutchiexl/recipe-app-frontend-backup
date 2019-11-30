@@ -5,6 +5,9 @@ import { RecipeState } from '../../../store/recipe.state';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { Navigate } from '@ngxs/router-plugin';
+import { MatDialog } from '@angular/material';
+import { ConfirmationComponent } from '../../confirmation/confirmation.component';
+import { DeleteMealPlanAction, DeleteRecipeAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-detail',
@@ -17,7 +20,8 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -32,5 +36,18 @@ export class DetailComponent implements OnInit {
 
   editRecipe(recipe: Recipe) {
     this.store.dispatch(new Navigate(['/edit-recipe', this.recipe.id]))
+  }
+
+  delete() {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new DeleteRecipeAction(this.recipe));
+      }
+    });
+
   }
 }

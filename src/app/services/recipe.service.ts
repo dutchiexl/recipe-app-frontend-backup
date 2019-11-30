@@ -30,4 +30,8 @@ export class RecipeService {
   update(recipe: Recipe): Observable<Object> {
     return this.http.patch(this.callbackUrl + '/' + recipe.id, RecipeUtil.recipeAsJSON(recipe));
   }
+
+  delete(recipe: Recipe) {
+    return this.http.delete(this.callbackUrl + '/' + recipe.id);
+  }
 }

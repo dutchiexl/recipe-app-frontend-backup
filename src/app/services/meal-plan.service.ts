@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
-import { Recipe } from '../interfaces/recipe/recipe.interface';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { RecipeMapper } from '../mappers/recipe.mapper';
-import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
-import { RecipeUtil } from '../utils/recipe.util';
+import { Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 import { MealPlan } from '../interfaces/planner/meal-plan';
 import { RawMealPlan } from '../interfaces/api/raw-meal.plan';
 import { MealPlanMapper } from '../mappers/meal-plan.mapper';
@@ -40,5 +36,9 @@ export class MealPlanService {
 
   update(mealPlan: MealPlan) {
     return this.http.patch(this.callbackUrl + '/' + mealPlan.id, MealPlanUtil.asJson(mealPlan));
+  }
+
+  delete(mealPlan: MealPlan) {
+    return this.http.delete(this.callbackUrl + '/' + mealPlan.id);
   }
 }
