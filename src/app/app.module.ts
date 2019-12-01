@@ -40,6 +40,9 @@ import { MealPlanService } from './services/meal-plan.service';
 import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
 import { RecipeListItemComponent } from './components/recipe/recipe-list-item/recipe-list-item.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { ShoppinglistComponent } from './components/shoppinglist/shoppinglist.component';
+import { ShoppinglistGroupComponent } from './components/shoppinglist/shoppinglist-group/shoppinglist-group.component';
+import { UnitService } from './services/unit-service';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     PlannerDetailComponent,
     PlannerEditComponent,
     RecipeListItemComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ShoppinglistComponent,
+    ShoppinglistGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,8 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
   ],
   providers: [
     RecipeService,
-    MealPlanService
+    MealPlanService,
+    UnitService
   ],
   entryComponents: [
     ConfirmationComponent

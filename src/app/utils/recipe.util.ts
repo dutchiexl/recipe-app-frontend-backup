@@ -47,4 +47,10 @@ export class RecipeUtil {
       nutrients: []
     };
   }
+
+  static recipeListAsJson(recipes: Recipe[]) {
+    return {
+      'recipes': recipes.map((recipe) => recipe.id)
+    }
+  }
 }

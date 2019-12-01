@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
 import { RecipeState } from '../../../store/recipe.state';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
+import { SetMealplanAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-planner-overview',
@@ -28,6 +29,5 @@ export class PlannerOverviewComponent implements OnInit {
   }
 
   goToMealPlan(mealPlan: MealPlan) {
-    this.store.dispatch(new Navigate(['/plan', mealPlan.id]))
-  }
+    this.store.dispatch(new SetMealplanAction(mealPlan));}
 }

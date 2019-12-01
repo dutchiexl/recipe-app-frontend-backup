@@ -6,6 +6,7 @@ import { EditComponent } from './components/recipe/edit/edit.component';
 import { PlannerOverviewComponent } from './components/planner/planner-overview/planner-overview.component';
 import { PlannerDetailComponent } from './components/planner/planner-detail/planner-detail.component';
 import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
+import { ShoppinglistComponent } from './components/shoppinglist/shoppinglist.component';
 
 const routes: Routes = [
   {path: '', component: OverviewComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'create-recipe', component: EditComponent},
   {path: 'edit-recipe/:recipeId', component: EditComponent},
   {path: 'planner', component: PlannerOverviewComponent},
+  {path: 'plan/:planId/shoppinglist', component: ShoppinglistComponent, pathMatch: 'full'},
   {path: 'plan/:planId', component: PlannerDetailComponent},
   {path: 'create-plan', component: PlannerEditComponent},
   {path: 'edit-plan/:mealPlanId', component: PlannerEditComponent},

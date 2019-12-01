@@ -53,7 +53,7 @@
       "ingredients": [
         {
           "name": "tagliatelle",
-          "amount": "250"
+          "amount": 250
         },
         {
           "name": "knoflook",
@@ -85,7 +85,7 @@
         }
       ],
       "imagePath": "/images/RkB8tEJy4RxupyhNQ_4MeZeo.jpeg",
-      "creationDate": "2019-11-18T10:11:49.953Z",
+      "creationDate": "2019-12-01T15:57:37.053Z",
       "equipment": [],
       "nutrients": [],
       "id": 2
@@ -95,10 +95,18 @@
     {
       "name": "test",
       "recipes": [
+        1,
+        2
+      ],
+      "id": 1
+    },
+    {
+      "name": "Walf",
+      "recipes": [
         2,
         1
       ],
-      "id": 1
+      "id": 2
     }
   ],
   "units": [

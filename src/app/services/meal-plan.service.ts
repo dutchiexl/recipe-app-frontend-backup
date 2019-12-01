@@ -7,6 +7,8 @@ import { RawMealPlan } from '../interfaces/api/raw-meal.plan';
 import { MealPlanMapper } from '../mappers/meal-plan.mapper';
 import { RecipeService } from './recipe.service';
 import { MealPlanUtil } from '../utils/mealPlanUtil';
+import { Recipe } from '../interfaces/recipe/recipe.interface';
+import { RecipeUtil } from '../utils/recipe.util';
 
 @Injectable()
 export class MealPlanService {
@@ -40,5 +42,9 @@ export class MealPlanService {
 
   delete(mealPlan: MealPlan) {
     return this.http.delete(this.callbackUrl + '/' + mealPlan.id);
+  }
+
+  updateRecipes(plan: MealPlan, recipes: Recipe[]) {
+    return this.http.patch(this.callbackUrl + '/' + plan.id, RecipeUtil.recipeListAsJson(recipes));
   }
 }

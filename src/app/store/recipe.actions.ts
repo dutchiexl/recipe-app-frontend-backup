@@ -26,6 +26,12 @@ export class LoadMealPlansAction {
   constructor() { }
 }
 
+export class LoadUnitsAction {
+  public static readonly type = '[Recipe] Load units';
+
+  constructor() { }
+}
+
 export class UpdateOrCreateRecipeAction {
   public static readonly type = '[Recipe] Update or create a recipe';
 
@@ -36,6 +42,12 @@ export class DeleteRecipeAction {
   public static readonly type = '[Recipe] Delete a recipe';
 
   constructor(public recipe: Recipe) { }
+}
+
+export class SetMealplanAction {
+  public static readonly type = '[Recipe] Set a mealplan';
+
+  constructor(public mealPlan: MealPlan) { }
 }
 
 export class UpdateOrCreateMealPlanAction {
