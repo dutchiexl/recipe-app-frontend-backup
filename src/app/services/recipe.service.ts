@@ -28,6 +28,7 @@ export class RecipeService {
   }
 
   update(recipe: Recipe): Observable<Object> {
+    console.log(RecipeUtil.recipeAsJSON(recipe));
     return this.http.patch(this.callbackUrl + '/' + recipe.id, RecipeUtil.recipeAsJSON(recipe));
   }
 

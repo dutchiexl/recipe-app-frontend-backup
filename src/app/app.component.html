@@ -1,4 +1,5 @@
 <mat-toolbar>
+  <button mat-button (click)="goToOverview()">Overview</button>
   <span class="spacer"></span>
   <button mat-button *ngIf="selectedMealPlan" (click)="goToShoppingList()">Boodschappenlijstje</button>
   <button mat-button [matMenuTriggerFor]="menu">{{ mode }}</button>
@@ -10,7 +11,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #optionsMenu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="setMode(stateEnum.MANAGE_UNITS)">
       <span>Manage units</span>
     </button>
   </mat-menu>

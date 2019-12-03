@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
 import { RecipeState } from '../../../store/recipe.state';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
-import { SetMealplanAction } from '../../../store/recipe.actions';
+import { NavigateAction, SetMealplanAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-planner-overview',
@@ -25,9 +25,10 @@ export class PlannerOverviewComponent implements OnInit {
   }
 
   createPlan() {
-    this.store.dispatch(new Navigate(['/create-plan']));
+    this.store.dispatch(new NavigateAction(['plan', 'create']));
   }
 
   goToMealPlan(mealPlan: MealPlan) {
-    this.store.dispatch(new SetMealplanAction(mealPlan));}
+    this.store.dispatch(new NavigateAction(['plan', mealPlan.id], mealPlan));
+  }
 }

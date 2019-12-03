@@ -7,17 +7,19 @@ import { PlannerOverviewComponent } from './components/planner/planner-overview/
 import { PlannerDetailComponent } from './components/planner/planner-detail/planner-detail.component';
 import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
 import { ShoppinglistComponent } from './components/shoppinglist/shoppinglist.component';
+import { UnitsComponent } from './components/settings/units/units.component';
 
 const routes: Routes = [
   {path: '', component: OverviewComponent},
+  {path: 'recipe/create', component: EditComponent, pathMatch: 'full'},
+  {path: 'recipe/edit/:recipeId', component: EditComponent, pathMatch: 'full'},
   {path: 'recipe/:recipeId', component: DetailComponent},
-  {path: 'create-recipe', component: EditComponent},
-  {path: 'edit-recipe/:recipeId', component: EditComponent},
-  {path: 'planner', component: PlannerOverviewComponent},
   {path: 'plan/:planId/shoppinglist', component: ShoppinglistComponent, pathMatch: 'full'},
+  {path: 'plan/create', component: PlannerEditComponent, pathMatch: 'full'},
+  {path: 'plan/edit/:mealPlanId', component: PlannerEditComponent, pathMatch: 'full'},
   {path: 'plan/:planId', component: PlannerDetailComponent},
-  {path: 'create-plan', component: PlannerEditComponent},
-  {path: 'edit-plan/:mealPlanId', component: PlannerEditComponent},
+  {path: 'plan', component: PlannerOverviewComponent},
+  {path: 'manage/units', component: UnitsComponent},
 ];
 
 @NgModule({

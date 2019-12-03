@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { RecipeState } from '../../../store/recipe.state';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { Navigate } from '@ngxs/router-plugin';
+import { NavigateAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-overview',
@@ -22,10 +23,10 @@ export class OverviewComponent implements OnInit {
   }
 
   goToRecipe(recipe: Recipe) {
-    this.store.dispatch(new Navigate(['/recipe', recipe.id]))
+    this.store.dispatch(new NavigateAction(['recipe', recipe.id]))
   }
 
   createRecipe() {
-    this.store.dispatch(new Navigate(['/create-recipe']))
+    this.store.dispatch(new NavigateAction(['recipe', 'create']))
   }
 }

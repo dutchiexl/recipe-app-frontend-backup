@@ -8,7 +8,7 @@ import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { Navigate } from '@ngxs/router-plugin';
 import { MatDialog } from '@angular/material';
 import { ConfirmationComponent } from '../../confirmation/confirmation.component';
-import { DeleteMealPlanAction } from '../../../store/recipe.actions';
+import { DeleteMealPlanAction, NavigateAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-planner-detail',
@@ -36,11 +36,11 @@ export class PlannerDetailComponent implements OnInit {
   }
 
   goToRecipe(recipe: Recipe) {
-    this.store.dispatch(new Navigate(['/recipe', recipe.id]))
+    this.store.dispatch(new NavigateAction(['recipe', recipe.id]))
   }
 
   editPlan() {
-    this.store.dispatch(new Navigate(['/edit-plan', this.mealPlan.id]))
+    this.store.dispatch(new NavigateAction(['plan', 'edit', this.mealPlan.id], this.mealPlan))
   }
 
   deletePlan() {

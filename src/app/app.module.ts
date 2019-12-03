@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
@@ -43,6 +44,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { ShoppinglistComponent } from './components/shoppinglist/shoppinglist.component';
 import { ShoppinglistGroupComponent } from './components/shoppinglist/shoppinglist-group/shoppinglist-group.component';
 import { UnitService } from './services/unit-service';
+import { UnitsComponent } from './components/settings/units/units.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { UnitService } from './services/unit-service';
     RecipeListItemComponent,
     ConfirmationComponent,
     ShoppinglistComponent,
-    ShoppinglistGroupComponent
+    ShoppinglistGroupComponent,
+    UnitsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { UnitService } from './services/unit-service';
     MatListModule,
     MatDialogModule,
     MatMenuModule,
+    MatAutocompleteModule,
     EcoFabSpeedDialModule,
     NgxsModule.forRoot([
       RecipeState

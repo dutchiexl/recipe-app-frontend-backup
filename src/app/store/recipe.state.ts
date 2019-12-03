@@ -4,7 +4,11 @@ import {
   DeleteRecipeAction,
   LoadApplicationAction,
   LoadMealPlansAction,
-  LoadRecipesAction, LoadUnitsAction, SetMealplanAction, SetModeAction,
+  LoadRecipesAction,
+  LoadUnitsAction,
+  NavigateAction,
+  SetMealplanAction,
+  SetModeAction,
   UpdateOrCreateMealPlanAction,
   UpdateOrCreateRecipeAction
 } from './recipe.actions';
@@ -79,6 +83,11 @@ export class RecipeState {
     return state.mealPlans;
   }
 
+  @Selector()
+  public static getUnits(state: RecipeStateModel): Unit[] {
+    return state.units;
+  }
+
   @Action(SetModeAction)
   public setMode(ctx: StateContext<RecipeStateModel>, action: SetModeAction) {
     ctx.setState(
@@ -88,10 +97,13 @@ export class RecipeState {
     );
     switch (action.mode) {
       case AppModeEnum.RECIPES:
-        ctx.dispatch(new Navigate(['/']));
+        ctx.dispatch(new NavigateAction(['']));
         break;
       case AppModeEnum.MEALPLANS:
-        ctx.dispatch(new Navigate(['/planner']));
+        ctx.dispatch(new NavigateAction(['plan']));
+        break;
+      case AppModeEnum.MANAGE_UNITS:
+        ctx.dispatch(new NavigateAction(['manage', 'units']));
         break;
     }
   }
@@ -148,12 +160,12 @@ export class RecipeState {
     if (action.recipe.id) {
       this.recipeService.update(action.recipe).subscribe(() => {
         ctx.dispatch(new LoadRecipesAction());
-        ctx.dispatch(new Navigate(['/recipe', action.recipe.id]))
+        ctx.dispatch(new NavigateAction(['recipe', action.recipe.id]))
       });
     } else {
       this.recipeService.create(action.recipe).subscribe((recipe: RawRecipe) => {
         ctx.dispatch(new LoadRecipesAction());
-        ctx.dispatch(new Navigate(['/recipe', recipe.id]))
+        ctx.dispatch(new NavigateAction(['recipe', recipe.id]))
       });
     }
   }
@@ -173,7 +185,7 @@ export class RecipeState {
     this.recipeService.delete(action.recipe).subscribe(() => {
       ctx.dispatch(new LoadRecipesAction());
       ctx.dispatch(new LoadMealPlansAction());
-      ctx.dispatch(new Navigate(['/']))
+      ctx.dispatch(new NavigateAction(['']))
     });
   }
 
@@ -182,12 +194,12 @@ export class RecipeState {
     if (action.mealPlan.id) {
       this.mealPlanService.update(action.mealPlan).subscribe(() => {
         ctx.dispatch(new LoadMealPlansAction());
-        ctx.dispatch(new Navigate(['/plan', action.mealPlan.id]))
+        ctx.dispatch(new NavigateAction(['plan', action.mealPlan.id], action.mealPlan))
       });
     } else {
       this.mealPlanService.create(action.mealPlan).subscribe((mealPlan: RawMealPlan) => {
         ctx.dispatch(new LoadMealPlansAction());
-        ctx.dispatch(new Navigate(['/plan', mealPlan.id]))
+        ctx.dispatch(new NavigateAction(['plan', mealPlan.id], action.mealPlan))
       });
     }
   }
@@ -199,15 +211,33 @@ export class RecipeState {
         draft.selectedMealplan = action.mealPlan;
       }),
     );
-    ctx.dispatch(new Navigate(['/plan', action.mealPlan.id]))
+    ctx.dispatch(new NavigateAction(['plan', action.mealPlan.id]))
   }
 
   @Action(DeleteMealPlanAction)
   public deleteMealplan(ctx: StateContext<RecipeStateModel>, action: DeleteMealPlanAction) {
     this.mealPlanService.delete(action.mealPlan).subscribe(() => {
       ctx.dispatch(new LoadMealPlansAction());
-      ctx.dispatch(new Navigate(['/planner']))
+      ctx.dispatch(new NavigateAction(['plan']))
     });
+  }
+
+  @Action(NavigateAction)
+  public navigate(ctx: StateContext<RecipeStateModel>, action: NavigateAction) {
+    if (action.mealplan) {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.selectedMealplan = action.mealplan;
+        }),
+      );
+    } else {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.selectedMealplan = undefined;
+        }),
+      );
+    }
+    ctx.dispatch(new Navigate(action.path));
   }
 
   private checkLoadedState(ctx: StateContext<RecipeStateModel>): void {

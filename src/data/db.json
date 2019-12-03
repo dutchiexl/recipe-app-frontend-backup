@@ -6,7 +6,7 @@
       "nameAddition": "met gestoofde groenten en rijst",
       "description": "Een van de bekendste filipijnse recepten",
       "imagePath": "images/filipijnse-kip/filipino-chicken.jpg",
-      "creationDate": "2019-11-18T10:10:31.742Z",
+      "creationDate": "2019-12-03T16:38:05.387Z",
       "steps": [
         {
           "name": "Aardappels roosteren",
@@ -22,15 +22,18 @@
       "ingredients": [
         {
           "name": "Pijnboompitten",
-          "amount": 5
+          "amount": 5,
+          "category": "meat"
         },
         {
           "name": "courgetten",
-          "amount": 1
+          "amount": 1,
+          "category": "meat"
         },
         {
           "name": "wortelen",
-          "amount": "20"
+          "amount": "20",
+          "category": "meat"
         }
       ],
       "nutrients": [],
@@ -53,39 +56,49 @@
       "ingredients": [
         {
           "name": "tagliatelle",
-          "amount": 250
+          "amount": 250,
+          "category": "meat",
+          "unitId": 1
         },
         {
-          "name": "knoflook",
-          "amount": "1"
+          "name": "knofloo",
+          "amount": 1,
+          "category": "meat",
+          "unitId": 1
         },
         {
           "name": "courgette",
-          "amount": "1"
+          "amount": "1",
+          "category": "meat"
         },
         {
           "name": "peultjes",
-          "amount": "500"
+          "amount": "500",
+          "category": "meat"
         },
         {
           "name": "walnoten",
-          "amount": "1"
+          "amount": 1,
+          "category": "meat"
         },
         {
           "name": "weed",
-          "amount": "50"
+          "amount": 50,
+          "category": "meat"
         },
         {
           "name": "konijnen",
-          "amount": "20"
+          "amount": 20,
+          "category": "meat"
         },
         {
           "name": "worst",
-          "amount": "15"
+          "amount": 15,
+          "category": "meat"
         }
       ],
       "imagePath": "/images/RkB8tEJy4RxupyhNQ_4MeZeo.jpeg",
-      "creationDate": "2019-12-01T15:57:37.053Z",
+      "creationDate": "2019-12-02T10:21:12.653Z",
       "equipment": [],
       "nutrients": [],
       "id": 2
@@ -93,15 +106,14 @@
   ],
   "meal_plans": [
     {
-      "name": "test",
+      "name": "Week 1",
       "recipes": [
-        1,
         2
       ],
       "id": 1
     },
     {
-      "name": "Walf",
+      "name": "Week 2",
       "recipes": [
         2,
         1

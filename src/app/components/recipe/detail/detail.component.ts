@@ -4,10 +4,9 @@ import { RecipeListUtil } from '../../../utils/recipe-list.util';
 import { RecipeState } from '../../../store/recipe.state';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
-import { Navigate } from '@ngxs/router-plugin';
 import { MatDialog } from '@angular/material';
 import { ConfirmationComponent } from '../../confirmation/confirmation.component';
-import { DeleteMealPlanAction, DeleteRecipeAction } from '../../../store/recipe.actions';
+import { DeleteRecipeAction, NavigateAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-detail',
@@ -35,7 +34,7 @@ export class DetailComponent implements OnInit {
   }
 
   editRecipe(recipe: Recipe) {
-    this.store.dispatch(new Navigate(['/edit-recipe', this.recipe.id]))
+    this.store.dispatch(new NavigateAction(['recipe', 'edit', this.recipe.id]))
   }
 
   delete() {

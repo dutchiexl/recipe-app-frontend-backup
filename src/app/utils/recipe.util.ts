@@ -1,5 +1,7 @@
 import { Recipe } from '../interfaces/recipe/recipe.interface';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
+import { IngredientCategory } from '../enums/ingredient-category';
+import { RawIngredient } from '../interfaces/api/raw-ingredient.interface';
 
 export class RecipeUtil {
   public static createEmpty(): Recipe {
@@ -36,10 +38,15 @@ export class RecipeUtil {
         return step;
       }),
       ingredients: recipe.ingredients.map((ingredient) => {
-        return {
+        let rawIngredient: RawIngredient = {
           name: ingredient.name,
-          amount: ingredient.amount
+          amount: ingredient.amount,
+          category: IngredientCategory.MEAT
+        };
+        if (ingredient.unit && ingredient.unit.id) {
+          rawIngredient.unitId = ingredient.unit.id;
         }
+        return rawIngredient;
       }),
       imagePath: recipe.imagePath,
       creationDate: new Date(),

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { RecipeState } from './store/recipe.state';
 import { AppModeEnum } from './enums/app-mode.enum';
-import { SetModeAction } from './store/recipe.actions';
+import { NavigateAction, SetModeAction } from './store/recipe.actions';
 import { MealPlan } from './interfaces/planner/meal-plan';
-import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +33,18 @@ export class AppComponent {
   }
 
   goToShoppingList() {
-    this.store.dispatch(new Navigate(['plan', this.selectedMealPlan.id, 'shoppinglist']));
+    this.store.dispatch(new NavigateAction(['plan', this.selectedMealPlan.id, 'shoppinglist'], this.selectedMealPlan));
+  }
+
+  goToOverview() {
+    console.log(this.mode);
+    switch (this.mode) {
+      case AppModeEnum.RECIPES:
+        this.store.dispatch(new NavigateAction(['']));
+        break;
+      case AppModeEnum.MEALPLANS:
+        this.store.dispatch(new NavigateAction(['plan']));
+        break;
+    }
   }
 }

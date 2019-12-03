@@ -47,7 +47,7 @@ export class DeleteRecipeAction {
 export class SetMealplanAction {
   public static readonly type = '[Recipe] Set a mealplan';
 
-  constructor(public mealPlan: MealPlan) { }
+  constructor(public mealPlan?: MealPlan) { }
 }
 
 export class UpdateOrCreateMealPlanAction {
@@ -60,4 +60,10 @@ export class DeleteMealPlanAction {
   public static readonly type = '[Recipe] Delete a mealplan';
 
   constructor(public mealPlan: MealPlan) { }
+}
+
+export class NavigateAction {
+  public static readonly type = '[Recipe] Navigate';
+
+  constructor(public path: any[], public mealplan?: MealPlan) { }
 }
