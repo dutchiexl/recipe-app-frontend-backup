@@ -6,7 +6,7 @@
       "nameAddition": "met gestoofde groenten en rijst",
       "description": "Een van de bekendste filipijnse recepten",
       "imagePath": "images/filipijnse-kip/filipino-chicken.jpg",
-      "creationDate": "2019-12-03T18:08:09.772Z",
+      "creationDate": "2019-12-04T15:27:10.326Z",
       "steps": [
         {
           "name": "Aardappels roosteren",
@@ -37,6 +37,11 @@
           "amount": 20,
           "category": "meat",
           "unitId": 4
+        },
+        {
+          "name": "Kaka",
+          "amount": "15",
+          "category": "meat"
         }
       ],
       "nutrients": [],
@@ -64,44 +69,50 @@
           "unitId": 1
         },
         {
-          "name": "knofloo",
+          "name": "knoflook",
           "amount": 1,
-          "category": "vegetables",
+          "category": "meat",
           "unitId": 1
         },
         {
           "name": "courgette",
-          "amount": "1",
-          "category": "vegetables"
+          "amount": 1,
+          "category": "meat",
+          "unitId": 3
         },
         {
           "name": "peultjes",
-          "amount": "500",
-          "category": "vegetables"
+          "amount": 500,
+          "category": "meat",
+          "unitId": 4
         },
         {
           "name": "walnoten",
           "amount": 1,
-          "category": "nuts"
+          "category": "meat",
+          "unitId": 1
         },
         {
           "name": "weed",
           "amount": 50,
-          "category": "vegetables"
+          "category": "meat",
+          "unitId": 2
         },
         {
           "name": "konijnen",
           "amount": 20,
-          "category": "meat"
+          "category": "meat",
+          "unitId": 1
         },
         {
           "name": "worst",
           "amount": 15,
-          "category": "meat"
+          "category": "meat",
+          "unitId": 3
         }
       ],
       "imagePath": "/images/RkB8tEJy4RxupyhNQ_4MeZeo.jpeg",
-      "creationDate": "2019-12-02T10:21:12.653Z",
+      "creationDate": "2019-12-04T15:02:00.146Z",
       "equipment": [],
       "nutrients": [],
       "id": 2
@@ -116,7 +127,7 @@
       "id": 1
     },
     {
-      "name": "Week 2",
+      "name": "Maand 1",
       "recipes": [
         2,
         1
