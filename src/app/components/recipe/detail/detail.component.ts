@@ -5,7 +5,7 @@ import { RecipeState } from '../../../store/recipe.state';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { MatDialog } from '@angular/material';
-import { ConfirmationComponent } from '../../confirmation/confirmation.component';
+import { ConfirmationComponent } from '../../shared/confirmation/confirmation.component';
 import { DeleteRecipeAction, NavigateAction } from '../../../store/recipe.actions';
 
 @Component({

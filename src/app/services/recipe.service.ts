@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 import { RecipeMapper } from '../mappers/recipe.mapper';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 import { RecipeUtil } from '../utils/recipe.util';
-import { UnitService } from './unit-service';
 import { Unit } from '../interfaces/unit/unit';
+import { UnitService } from './unit.service';
 
 @Injectable()
 export class RecipeService {

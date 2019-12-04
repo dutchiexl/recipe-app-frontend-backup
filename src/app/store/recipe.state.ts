@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   DeleteMealPlanAction,
   DeleteRecipeAction,
-  LoadApplicationAction,
+  LoadApplicationAction, LoadIngredientCategories,
   LoadMealPlansAction,
   LoadRecipesAction,
   LoadUnitsAction,
@@ -21,8 +21,10 @@ import { Navigate } from '@ngxs/router-plugin';
 import { RawRecipe } from '../interfaces/api/raw-recipe.interface';
 import { RawMealPlan } from '../interfaces/api/raw-meal.plan';
 import { AppModeEnum } from '../enums/app-mode.enum';
-import { UnitService } from '../services/unit-service';
 import { Unit } from '../interfaces/unit/unit';
+import { IngredientCategoryService } from '../services/ingredient-category.service';
+import { IngredientCategory } from '../interfaces/recipe/ingredient-category';
+import { UnitService } from '../services/unit.service';
 
 export interface RecipeStateModel {
   mode: AppModeEnum;
@@ -31,6 +33,7 @@ export interface RecipeStateModel {
   recipes: Recipe[];
   mealPlans: MealPlan[];
   units: Unit[];
+  ingredientCategories: IngredientCategory[];
 }
 
 @State<RecipeStateModel>({
@@ -41,7 +44,8 @@ export interface RecipeStateModel {
     isLoaded: false,
     recipes: undefined,
     mealPlans: undefined,
-    units: undefined
+    units: undefined,
+    ingredientCategories: undefined
   }
 })
 export class RecipeState {
@@ -49,7 +53,8 @@ export class RecipeState {
   constructor(
     private recipeService: RecipeService,
     private mealPlanService: MealPlanService,
-    private unitService: UnitService
+    private unitService: UnitService,
+    private ingredientCategoryService: IngredientCategoryService
   ) {
   }
 
@@ -149,6 +154,19 @@ export class RecipeState {
       ctx.setState(
         produce(ctx.getState(), (draft) => {
           draft.units = units;
+        }),
+      );
+      this.checkLoadedState(ctx);
+    });
+  }
+
+  @Action(LoadIngredientCategories)
+  public loadIngredientCategories(ctx: StateContext<RecipeStateModel>, {}: LoadIngredientCategories) {
+    this.setLoadedState(ctx, false);
+    this.ingredientCategoryService.getAll().subscribe((ingredientCategories) => {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.ingredientCategories = ingredientCategories;
         }),
       );
       this.checkLoadedState(ctx);

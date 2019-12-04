@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Confirmation } from '../../interfaces/confirmation/confirmation.interface';
+import { Confirmation } from '../../../interfaces/confirmation/confirmation.interface';
 
 @Component({
   selector: 'app-confirmation',

@@ -7,7 +7,7 @@ import { MealPlanListUtil } from '../../../utils/meal-plan-list.util';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { Navigate } from '@ngxs/router-plugin';
 import { MatDialog } from '@angular/material';
-import { ConfirmationComponent } from '../../confirmation/confirmation.component';
+import { ConfirmationComponent } from '../../shared/confirmation/confirmation.component';
 import { DeleteMealPlanAction, NavigateAction } from '../../../store/recipe.actions';
 
 @Component({

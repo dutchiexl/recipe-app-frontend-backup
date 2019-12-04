@@ -161,5 +161,10 @@
       "metric": "item",
       "synonyms": []
     }
+  ],
+  "ingredient_categories": [
+    "meat",
+    "vegetables",
+    "nuts"
   ]
 }

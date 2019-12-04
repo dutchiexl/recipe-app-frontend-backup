@@ -40,11 +40,12 @@ import { PlannerDetailComponent } from './components/planner/planner-detail/plan
 import { MealPlanService } from './services/meal-plan.service';
 import { PlannerEditComponent } from './components/planner/planner-edit/planner-edit.component';
 import { RecipeListItemComponent } from './components/recipe/recipe-list-item/recipe-list-item.component';
-import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { ConfirmationComponent } from './components/shared/confirmation/confirmation.component';
 import { ShoppinglistComponent } from './components/shoppinglist/shoppinglist.component';
 import { ShoppinglistGroupComponent } from './components/shoppinglist/shoppinglist-group/shoppinglist-group.component';
-import { UnitService } from './services/unit-service';
 import { UnitsComponent } from './components/settings/units/units.component';
+import { UnitService } from './services/unit.service';
+import { IngredientCategoryService } from './services/ingredient-category.service';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { UnitsComponent } from './components/settings/units/units.component';
   providers: [
     RecipeService,
     MealPlanService,
-    UnitService
+    UnitService,
+    IngredientCategoryService
   ],
   entryComponents: [
     ConfirmationComponent
