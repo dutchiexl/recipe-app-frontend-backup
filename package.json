@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "api": "cd node-server && node app.js",
     "database": " json-server --watch src/data/db.json",
-    "app": "npm run start & npm run database & npm run api"
+    "app": "npm run start & npm run database"
   },
   "private": true,
   "dependencies": {

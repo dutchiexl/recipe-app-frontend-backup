@@ -1,9 +1,13 @@
-import * as express from 'express';
+import express from 'express';
 
-const UPLOAD_PATH = 'public/images';
+const UPLOAD_PATH = 'public';
 
 const app: express.Application = express();
 const port = 3334;
-
 app.use(express.static(UPLOAD_PATH));
-app.listen(port, () => console.log(`Asset server listening on port ${port}!`));
+
+export class AssetServer {
+  public static run() {
+    app.listen(port, () => console.log(`Asset server listening on port ${port}!`));
+  }
+}
