@@ -4,6 +4,8 @@ import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { MealPlanListUtil } from '../../utils/meal-plan-list.util';
 import { RecipeState } from '../../store/recipe.state';
+import { Shoppinglist } from '../../interfaces/shoppinglist/shoppinglist';
+import { ShoppingListUtil } from '../../utils/shopping-list-util';
 
 @Component({
   selector: 'app-shoppinglist',
@@ -12,6 +14,7 @@ import { RecipeState } from '../../store/recipe.state';
 })
 export class ShoppinglistComponent implements OnInit {
   mealPlan: MealPlan;
+  shoppingList: Shoppinglist;
 
   constructor(
     private store: Store,
@@ -23,6 +26,6 @@ export class ShoppinglistComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.shoppingList = ShoppingListUtil.convertMealplanToShoppingList(this.mealPlan);
   }
-
 }

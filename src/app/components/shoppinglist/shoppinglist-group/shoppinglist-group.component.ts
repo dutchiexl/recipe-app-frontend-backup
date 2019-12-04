@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShoppinglistGroup } from '../../../interfaces/shoppinglist/shoppinglist-group';
 
 @Component({
   selector: 'app-shoppinglist-group',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shoppinglist-group.component.scss']
 })
 export class ShoppinglistGroupComponent implements OnInit {
+  @Input() shoppingListGroup: ShoppinglistGroup;
 
   constructor() { }
 

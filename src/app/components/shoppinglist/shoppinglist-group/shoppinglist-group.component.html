@@ -1,1 +1,4 @@
-<p>shoppinglist-group works!</p>
+<h1>{{ shoppingListGroup.category }}</h1>
+<ul>
+  <app-ingredient *ngFor="let ingredient of shoppingListGroup.ingredients" [ingredient]="ingredient"></app-ingredient>
+</ul>
