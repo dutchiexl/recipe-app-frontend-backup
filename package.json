@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "cd node-server && node app.js",
+    "api": "cd node-server/build && node app.js",
     "database": " json-server --watch src/data/db.json",
     "app": "npm run start & npm run database"
   },

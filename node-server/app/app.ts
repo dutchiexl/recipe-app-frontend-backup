@@ -1,5 +1,5 @@
-import { AssetServer } from './asset-server/asset-server';
-import { ApiServer } from './api/api-server';
+import ApiServer from './api/server';
+import AssetServer from './assets/server';
 
-AssetServer.run();
-ApiServer.run();
+ApiServer.bootstrap().start(3333);
+AssetServer.bootstrap().start(3334);
