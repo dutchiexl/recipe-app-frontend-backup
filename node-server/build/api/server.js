@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const bodyParser = tslib_1.__importStar(require("body-parser"));
+const controllers = tslib_1.__importStar(require("./controllers/index"));
 const core_1 = require("@overnightjs/core");
 const logger_1 = require("@overnightjs/logger");
-const controllers = tslib_1.__importStar(require("./controllers/index"));
+let cors = require('cors');
 /**
  * The server.
  *
@@ -42,6 +43,9 @@ class ApiServer extends core_1.Server {
      * @return void
      */
     config() {
+        this.app.use(cors({
+            origin: '*'
+        }));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({
             extended: true

@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { Controller, Get, Post } from '@overnightjs/core';
+import { Controller, Get } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
-import fs from 'fs';
 import multer from 'multer';
 
 @Controller('api')

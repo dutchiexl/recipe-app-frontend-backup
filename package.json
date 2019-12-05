@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "cd node-server/build && node app.js",
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "api": "cd node-server/build && npm run watch",
     "database": " json-server --watch src/data/db.json",
-    "app": "npm run start & npm run database"
+    "app": "npm run start & npm run database & npm run api"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +29,8 @@
     "@ngxs/router-plugin": "^3.5.1",
     "@ngxs/schematics": "^0.0.1-alpha.5",
     "@ngxs/store": "^3.5.1",
+    "@types/cors": "^2.8.6",
+    "cors": "^2.8.5",
     "immer": "^5.0.0",
     "json-server": "^0.15.1",
     "rxjs": "~6.4.0",

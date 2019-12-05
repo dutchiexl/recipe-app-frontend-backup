@@ -1,7 +1,9 @@
 import * as bodyParser from 'body-parser';
+import * as controllers from './controllers/index';
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
-import * as controllers from './controllers/index';
+
+let cors = require('cors');
 
 /**
  * The server.
@@ -44,6 +46,9 @@ class ApiServer extends Server {
    * @return void
    */
   private config() {
+    this.app.use(cors({
+      origin: '*'
+    }));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({
       extended: true

@@ -12,7 +12,7 @@ import { UnitService } from './unit.service';
 @Injectable()
 export class RecipeService {
   cache: Observable<Recipe>;
-  callbackUrl = 'http://localhost:3000/recipes';
+  callbackUrl = 'http://localhost:3333/api/recipes';
 
   constructor(
     private http: HttpClient,
@@ -27,6 +27,7 @@ export class RecipeService {
     return forkJoin([recipes$, units$]).pipe(
       map((result) => {
         let recipes = result[0] as RawRecipe[];
+        console.log(recipes);
         let units = result[1] as Unit[];
         return recipes.map((rawRecipeData: RawRecipe) => {
           return RecipeMapper.toObject(rawRecipeData, units)
