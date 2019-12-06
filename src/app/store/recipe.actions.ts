@@ -1,6 +1,7 @@
 import { Recipe } from '../interfaces/recipe/recipe.interface';
 import { MealPlan } from '../interfaces/planner/meal-plan';
 import { AppModeEnum } from '../enums/app-mode.enum';
+import { Ingredient } from '../interfaces/recipe/ingredient.interface';
 
 export class SetModeAction {
   public static readonly type = '[Recipe] Set the application mode';
@@ -32,7 +33,13 @@ export class LoadUnitsAction {
   constructor() { }
 }
 
-export class LoadIngredientCategories {
+export class LoadIngredientsAction {
+  public static readonly type = '[Recipe] Load ingredients';
+
+  constructor() { }
+}
+
+export class LoadIngredientCategoriesAction {
   public static readonly type = '[Recipe] Load ingredient categories';
 
   constructor() { }
@@ -54,6 +61,12 @@ export class SetMealplanAction {
   public static readonly type = '[Recipe] Set a mealplan';
 
   constructor(public mealPlan?: MealPlan) { }
+}
+
+export class CreateIngredientAction {
+  public static readonly type = '[Recipe] create ingredient';
+
+  constructor(public ingredient: Ingredient) { }
 }
 
 export class UpdateOrCreateMealPlanAction {

@@ -24,7 +24,7 @@ import { HttpClient } from '@angular/common/http';
 export class EditStepComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input() step: Step;
   stepItemFormgroup: FormGroup;
-  preview = '/images/placeholder.png';
+  preview = '/images/placeholder.jpg';
   @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
   onChange = (step: Step) => {};

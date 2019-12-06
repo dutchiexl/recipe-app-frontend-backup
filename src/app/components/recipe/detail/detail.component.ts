@@ -47,6 +47,5 @@ export class DetailComponent implements OnInit {
         this.store.dispatch(new DeleteRecipeAction(this.recipe));
       }
     });
-
   }
 }

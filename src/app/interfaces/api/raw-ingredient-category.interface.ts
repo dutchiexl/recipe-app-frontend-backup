@@ -1,3 +1,4 @@
 export interface RawIngredientCategory {
-  name: string
+  _id: string;
+  name: string;
 }

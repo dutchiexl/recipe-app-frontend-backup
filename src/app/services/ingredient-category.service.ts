@@ -7,7 +7,7 @@ import { IngredientCategory } from '../interfaces/recipe/ingredient-category';
 
 export class IngredientCategoryService {
   cache: Observable<IngredientCategory>;
-  callbackUrl = 'http://localhost:3000/ingredient_categories';
+  callbackUrl = 'http://localhost:3333/api/ingredient-categories';
 
   constructor(private http: HttpClient) {
   }

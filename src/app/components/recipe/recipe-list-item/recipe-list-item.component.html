@@ -3,5 +3,5 @@
     <mat-card-title>{{ recipe.name }}</mat-card-title>
   </mat-card-header>
   <img *ngIf="recipe.imagePath" mat-card-image src="{{ recipe.imagePath }}" alt="{{ recipe.name }}">
-  <img *ngIf="!recipe.imagePath" mat-card-image src="/images/placeholder.png" alt="{{ recipe.name }}">
+  <img *ngIf="!recipe.imagePath" mat-card-image src="/images/placeholder.jpg" alt="{{ recipe.name }}">
 </mat-card>

@@ -4,7 +4,8 @@ import { IIngredient } from '../interfaces/ingredient.interface';
 
 const IngredientSchema: Schema = new Schema({
     name: {type: String, required: true, unique: true},
-    category: {type: Schema.Types.ObjectId, ref: 'IngredientCategory'}
+    category: {type: Schema.Types.ObjectId, ref: 'IngredientCategory'},
+    synonyms: [{type: String, required: true, unique: true}]
   }
 );
 

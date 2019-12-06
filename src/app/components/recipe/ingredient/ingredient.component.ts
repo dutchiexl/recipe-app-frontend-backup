@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Ingredient } from '../../../interfaces/recipe/ingredient.interface';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-ingredient',
@@ -9,7 +10,7 @@ import { Ingredient } from '../../../interfaces/recipe/ingredient.interface';
 export class IngredientComponent implements OnInit {
   @Input() ingredient: Ingredient;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }

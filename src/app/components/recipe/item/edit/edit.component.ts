@@ -7,6 +7,10 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ItemUtil } from '../../../../utils/item.util';
 import { Item } from '../../../../interfaces/recipe/item.interface';
+import { Ingredient } from '../../../../interfaces/recipe/ingredient.interface';
+import { IngredientUtil } from '../../../../utils/ingredient.util';
+import { MatDialog } from '@angular/material';
+import { CreateIngredientComponent } from '../../ingredient/create/create.component';
 
 @Component({
   selector: 'app-edit-item',
@@ -27,16 +31,22 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
   itemForm: FormGroup;
 
   units: Unit[];
-  filteredOptions: Observable<Unit[]>;
+  ingredients: Ingredient[];
+  filteredUnits: Observable<Unit[]>;
+  filteredIngredients: Observable<Ingredient[]>;
 
   onChange = (item: Item) => {};
 
   constructor(
     private store: Store,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.store.select(RecipeState.getUnits).subscribe((units) => {
       this.units = units;
+    });
+    this.store.select(RecipeState.getIngredients).subscribe((ingredients) => {
+      this.ingredients = ingredients;
     });
   }
 
@@ -51,9 +61,14 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
       amount: [this.item.amount, [Validators.required]]
     });
 
-    this.filteredOptions = this.itemForm.get('unit').valueChanges.pipe(
+    this.filteredUnits = this.itemForm.get('unit').valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map(value => this._filterUnits(value))
+    );
+
+    this.filteredIngredients = this.itemForm.get('ingredient').valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterIngredients(value))
     );
   }
 
@@ -74,7 +89,7 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
     //this.onChange(obj);
   }
 
-  private _filter(value: string): Unit[] {
+  private _filterUnits(value: string): Unit[] {
     if (typeof value === 'string') {
       const filterValue = value.toLowerCase();
 
@@ -82,11 +97,18 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
     }
   }
 
-  updateIngredient(event: Event) {
-    this.formItem.ingredient = this.itemForm.get('ingredient').value;
-    this.formItem.unit = this.itemForm.get('unit').value;
-    this.formItem.amount = this.itemForm.get('amount').value;
-    this.onChange(this.formItem);
+  private _filterIngredients(value: string): Ingredient[] {
+    if (typeof value === 'string') {
+      const filterValue = value.toLowerCase();
+
+      let ingredients = this.ingredients.filter(option => option.name.toLowerCase().includes(filterValue));
+      if (ingredients.length < 1) {
+        let newIngredient = IngredientUtil.createEmpty();
+        newIngredient.name = `Add '${value}'?`;
+        ingredients = [newIngredient];
+      }
+      return ingredients;
+    }
   }
 
   displayUnit() {
@@ -98,8 +120,47 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
     };
   }
 
+  displayIngredient() {
+    return (ingredient: Ingredient) => {
+      if (ingredient) {
+        return ingredient.name;
+      }
+      return '';
+    };
+  }
+
   updateUnit(unit: Unit) {
     this.itemForm.get('unit').setValue(unit);
-    this.updateIngredient(null);
+    this.updateItem(null);
+  }
+
+  updateIngredient(ingredient: Ingredient) {
+    if (!ingredient.id) {
+      this.openCreateDialog(ingredient);
+      this.itemForm.get('ingredient').setValue(undefined);
+    } else {
+      this.itemForm.get('ingredient').setValue(ingredient);
+      this.updateItem(null);
+    }
+  }
+
+  updateItem($event: Event) {
+    this.formItem.ingredient = this.itemForm.get('ingredient').value;
+    this.formItem.unit = this.itemForm.get('unit').value;
+    this.formItem.amount = this.itemForm.get('amount').value;
+    this.onChange(this.formItem);
+  }
+
+  private openCreateDialog(ingredient: Ingredient) {
+    const dialogRef = this.dialog.open(CreateIngredientComponent, {
+      width: '400px',
+      data: ingredient
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result)
+      }
+    });
   }
 }

@@ -4,7 +4,8 @@ import { IngredientCategory } from '../interfaces/recipe/ingredient-category';
 export class IngredientCategoryMapper {
   public static toModel(rawIngredientCategory: RawIngredientCategory): IngredientCategory {
     return {
-      name: rawIngredientCategory.name
+      id: rawIngredientCategory._id,
+      name: rawIngredientCategory.name,
     };
   }
 }

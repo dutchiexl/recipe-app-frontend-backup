@@ -34,7 +34,6 @@ export class RecipeService {
         let units = result[1] as Unit[];
         let ingredients = result[2] as Ingredient[];
         return recipes.map((rawRecipeData: RawRecipe) => {
-          console.log(ingredients);
           return RecipeMapper.toObject(rawRecipeData, units, ingredients)
         })
       })

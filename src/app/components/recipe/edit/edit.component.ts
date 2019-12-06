@@ -3,9 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
 import { RecipeUtil } from '../../../utils/recipe.util';
 import { Store } from '@ngxs/store';
-import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';
 import { StepUtil } from '../../../utils/step.util';
-import { IngredientUtil } from '../../../utils/ingredient.util';
 import { HttpClient } from '@angular/common/http';
 import { RecipeState } from '../../../store/recipe.state';
 import { RecipeListUtil } from '../../../utils/recipe-list.util';
@@ -24,7 +22,7 @@ export class EditComponent implements OnInit {
   form: FormGroup;
   itemFormGroup: FormArray = new FormArray([]);
   stepFormGroup: FormArray = new FormArray([]);
-  preview = '/images/placeholder.png';
+  preview = '/images/placeholder.jpg';
   @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
   constructor(
@@ -89,7 +87,8 @@ export class EditComponent implements OnInit {
       if (this.recipe.id) {
         recipeToSubmit.id = this.recipe.id;
       }
-      this.store.dispatch(new UpdateOrCreateRecipeAction(recipeToSubmit));
+      console.log(recipeToSubmit);
+     // this.store.dispatch(new UpdateOrCreateRecipeAction(recipeToSubmit));
     }
   }
 
@@ -123,13 +122,12 @@ export class EditComponent implements OnInit {
           imagePath: '/images/' + filename[filename.length - 1]
         });
         this.form.get('imagePath').updateValueAndValidity();
-        console.log(this.form.get('imagePath').value);
       })
   }
 
   private cleanItems(items: Item[]) {
-    return items.filter((items) => {
-      return !!items.ingredient.name && !!items.amount;
+    return items.filter((item) => {
+      return !!item.ingredient && !!item.amount && !!item.unit;
     })
   }
 

@@ -5,6 +5,7 @@ const mongoose = tslib_1.__importStar(require("mongoose"));
 const mongoose_1 = require("mongoose");
 const IngredientSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
-    category: { type: mongoose_1.Schema.Types.ObjectId, ref: 'IngredientCategory' }
+    category: { type: mongoose_1.Schema.Types.ObjectId, ref: 'IngredientCategory' },
+    synonyms: [{ type: String, required: true, unique: true }]
 });
 exports.default = mongoose.model('Ingredient', IngredientSchema);

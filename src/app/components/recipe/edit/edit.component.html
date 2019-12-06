@@ -27,7 +27,7 @@
           <h3>
             Ingredienten
           </h3>
-          <div formArrayName="ingredients">
+          <div formArrayName="items">
             <div *ngFor="let item of itemFormGroup.controls; let i = index;">
               <app-edit-item
                 formControlName="{{ i }}"

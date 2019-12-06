@@ -1,8 +1,9 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  CreateIngredientAction,
   DeleteMealPlanAction,
   DeleteRecipeAction,
-  LoadApplicationAction, LoadIngredientCategories,
+  LoadApplicationAction, LoadIngredientCategoriesAction, LoadIngredientsAction,
   LoadMealPlansAction,
   LoadRecipesAction,
   LoadUnitsAction,
@@ -25,6 +26,9 @@ import { Unit } from '../interfaces/unit/unit';
 import { IngredientCategoryService } from '../services/ingredient-category.service';
 import { IngredientCategory } from '../interfaces/recipe/ingredient-category';
 import { UnitService } from '../services/unit.service';
+import { Ingredient } from '../interfaces/recipe/ingredient.interface';
+import { IngredientService } from '../services/ingredient.service';
+import { tap } from 'rxjs/operators';
 
 export interface RecipeStateModel {
   mode: AppModeEnum;
@@ -33,6 +37,7 @@ export interface RecipeStateModel {
   recipes: Recipe[];
   mealPlans: MealPlan[];
   units: Unit[];
+  ingredients: Ingredient[];
   ingredientCategories: IngredientCategory[];
 }
 
@@ -45,6 +50,7 @@ export interface RecipeStateModel {
     recipes: undefined,
     mealPlans: undefined,
     units: undefined,
+    ingredients: undefined,
     ingredientCategories: undefined
   }
 })
@@ -54,6 +60,7 @@ export class RecipeState {
     private recipeService: RecipeService,
     private mealPlanService: MealPlanService,
     private unitService: UnitService,
+    private ingredientService: IngredientService,
     private ingredientCategoryService: IngredientCategoryService
   ) {
   }
@@ -93,6 +100,16 @@ export class RecipeState {
     return state.units;
   }
 
+  @Selector()
+  public static getIngredients(state: RecipeStateModel): Ingredient[] {
+    return state.ingredients;
+  }
+
+  @Selector()
+  public static getIngredientCategories(state: RecipeStateModel): IngredientCategory[] {
+    return state.ingredientCategories;
+  }
+
   @Action(SetModeAction)
   public setMode(ctx: StateContext<RecipeStateModel>, action: SetModeAction) {
     ctx.setState(
@@ -119,6 +136,8 @@ export class RecipeState {
     ctx.dispatch(new LoadRecipesAction());
     ctx.dispatch(new LoadMealPlansAction());
     ctx.dispatch(new LoadUnitsAction());
+    ctx.dispatch(new LoadIngredientCategoriesAction());
+    ctx.dispatch(new LoadIngredientsAction());
   }
 
   @Action(LoadRecipesAction)
@@ -160,8 +179,21 @@ export class RecipeState {
     });
   }
 
-  @Action(LoadIngredientCategories)
-  public loadIngredientCategories(ctx: StateContext<RecipeStateModel>, {}: LoadIngredientCategories) {
+  @Action(LoadIngredientsAction)
+  public loadIngredients(ctx: StateContext<RecipeStateModel>, {}: LoadIngredientsAction) {
+    this.setLoadedState(ctx, false);
+    this.ingredientService.getAll().subscribe((ingredients) => {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.ingredients = ingredients;
+        }),
+      );
+      this.checkLoadedState(ctx);
+    });
+  }
+
+  @Action(LoadIngredientCategoriesAction)
+  public loadIngredientCategories(ctx: StateContext<RecipeStateModel>, {}: LoadIngredientCategoriesAction) {
     this.setLoadedState(ctx, false);
     this.ingredientCategoryService.getAll().subscribe((ingredientCategories) => {
       ctx.setState(
@@ -230,6 +262,15 @@ export class RecipeState {
       }),
     );
     ctx.dispatch(new NavigateAction(['plan', action.mealPlan.id]))
+  }
+
+  @Action(CreateIngredientAction)
+  public createIngredient(ctx: StateContext<RecipeStateModel>, action: CreateIngredientAction) {
+    return this.ingredientService.create(action.ingredient).pipe(
+      tap((ingredient) => {
+        ctx.dispatch(new LoadIngredientsAction());
+      })
+    );
   }
 
   @Action(DeleteMealPlanAction)

@@ -14,7 +14,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
 import { OverviewComponent } from './components/recipe/overview/overview.component';
@@ -48,6 +48,7 @@ import { IngredientCategoryService } from './services/ingredient-category.servic
 import { ItemComponent } from './components/recipe/item/item.component';
 import { EditItemComponent } from './components/recipe/item/edit/edit.component';
 import { IngredientService } from './services/ingredient.service';
+import { CreateIngredientComponent } from './components/recipe/ingredient/create/create.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { IngredientService } from './services/ingredient.service';
     ShoppinglistComponent,
     ShoppinglistGroupComponent,
     UnitsComponent,
-    ItemComponent
+    ItemComponent,
+    CreateIngredientComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +91,7 @@ import { IngredientService } from './services/ingredient.service';
     MatDialogModule,
     MatMenuModule,
     MatAutocompleteModule,
+    MatSelectModule,
     EcoFabSpeedDialModule,
     NgxsModule.forRoot([
       RecipeState
@@ -104,7 +107,8 @@ import { IngredientService } from './services/ingredient.service';
     IngredientCategoryService
   ],
   entryComponents: [
-    ConfirmationComponent
+    ConfirmationComponent,
+    CreateIngredientComponent
   ],
   bootstrap: [AppComponent]
 })
