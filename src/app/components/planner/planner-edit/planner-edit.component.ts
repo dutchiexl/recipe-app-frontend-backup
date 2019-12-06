@@ -41,7 +41,7 @@ export class PlannerEditComponent implements OnInit {
     let mealPlanIdParameter = this.route.snapshot.paramMap.get('mealPlanId');
 
     if (mealPlanIdParameter) {
-      const mealPlanId = Number(mealPlanIdParameter);
+      const mealPlanId = mealPlanIdParameter;
       this.mealPlan = MealPlanListUtil.findById(this.store.selectSnapshot(RecipeState.getMealPlans), mealPlanId);
       this.mealPlanRecipes = this.mealPlan.recipes.map((recipe) => recipe)
     } else {

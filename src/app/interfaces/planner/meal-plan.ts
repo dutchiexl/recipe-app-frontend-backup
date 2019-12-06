@@ -1,7 +1,7 @@
 import { Recipe } from '../recipe/recipe.interface';
 
 export interface MealPlan {
-  id?: number;
+  id?: string;
   name: string;
   recipes: Recipe[];
 }

@@ -9,8 +9,7 @@
     "e2e": "ng e2e",
     "start": "ng serve --proxy-config proxy.conf.json",
     "api": "cd node-server/build && npm run watch",
-    "database": " json-server --watch src/data/db.json",
-    "app": "npm run start & npm run database & npm run api"
+    "app": "npm run start & npm run api"
   },
   "private": true,
   "dependencies": {

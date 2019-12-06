@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeState } from '../../../store/recipe.state';
 import { MealPlanListUtil } from '../../../utils/meal-plan-list.util';
 import { Recipe } from '../../../interfaces/recipe/recipe.interface';
-import { Navigate } from '@ngxs/router-plugin';
 import { MatDialog } from '@angular/material';
 import { ConfirmationComponent } from '../../shared/confirmation/confirmation.component';
 import { DeleteMealPlanAction, NavigateAction } from '../../../store/recipe.actions';
@@ -29,7 +28,7 @@ export class PlannerDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.store.select(RecipeState.getMealPlans).subscribe((mealPlans) => {
         this.mealPlans = mealPlans;
-        let mealPlanId = Number(params.get('planId'));
+        let mealPlanId = params.get('planId');
         this.mealPlan = MealPlanListUtil.findById(this.mealPlans, mealPlanId);
       });
     });

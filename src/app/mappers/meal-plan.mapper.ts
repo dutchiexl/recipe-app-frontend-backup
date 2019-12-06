@@ -6,7 +6,7 @@ export class MealPlanMapper {
 
   public static toObject(rawData: RawMealPlan, recipes: Recipe[]): MealPlan {
     return {
-      id: rawData.id,
+      id: rawData._id,
       name: rawData.name,
       recipes: rawData.recipes.map((recipeId) => {
         return recipes.find((recipe) => recipe.id === recipeId);

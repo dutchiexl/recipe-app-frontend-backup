@@ -12,7 +12,6 @@ export class ShoppingListUtil {
         this.addIngredientToShoppingListGroup(shoppingList, ingredient);
       });
     });
-    console.log(shoppingList);
     return shoppingList;
   }
 

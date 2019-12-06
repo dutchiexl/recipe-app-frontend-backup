@@ -21,7 +21,7 @@ export class ShoppinglistComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     let mealPlanIdParameter = this.route.snapshot.paramMap.get('planId');
-    const mealPlanId = Number(mealPlanIdParameter);
+    const mealPlanId = mealPlanIdParameter;
     this.mealPlan = MealPlanListUtil.findById(this.store.selectSnapshot(RecipeState.getMealPlans), mealPlanId);
   }
 

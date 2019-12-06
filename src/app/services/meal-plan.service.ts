@@ -13,7 +13,7 @@ import { RecipeUtil } from '../utils/recipe.util';
 @Injectable()
 export class MealPlanService {
 
-  callbackUrl = 'http://localhost:3000/meal_plans';
+  callbackUrl = 'http://localhost:3333/api/mealplans';
 
   constructor(
     private http: HttpClient,

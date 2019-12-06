@@ -217,7 +217,7 @@ export class RecipeState {
     } else {
       this.mealPlanService.create(action.mealPlan).subscribe((mealPlan: RawMealPlan) => {
         ctx.dispatch(new LoadMealPlansAction());
-        ctx.dispatch(new NavigateAction(['plan', mealPlan.id], action.mealPlan))
+        ctx.dispatch(new NavigateAction(['plan', mealPlan._id], action.mealPlan))
       });
     }
   }

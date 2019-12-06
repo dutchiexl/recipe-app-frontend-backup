@@ -1,5 +1,5 @@
 export interface RawMealPlan {
-  id?: number,
+  _id?: string,
   name: string,
   recipes: string[];
 }
