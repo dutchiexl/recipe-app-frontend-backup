@@ -31,7 +31,6 @@ import { RecipeService } from './services/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/recipe/edit/edit.component';
-import { EditIngredientComponent } from './components/recipe/ingredient/edit/edit.component';
 import { EditStepComponent } from './components/recipe/step/edit/edit.component';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { PlannerOverviewComponent } from './components/planner/planner-overview/planner-overview.component';
@@ -46,6 +45,9 @@ import { ShoppinglistGroupComponent } from './components/shoppinglist/shoppingli
 import { UnitsComponent } from './components/settings/units/units.component';
 import { UnitService } from './services/unit.service';
 import { IngredientCategoryService } from './services/ingredient-category.service';
+import { ItemComponent } from './components/recipe/item/item.component';
+import { EditItemComponent } from './components/recipe/item/edit/edit.component';
+import { IngredientService } from './services/ingredient.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,7 @@ import { IngredientCategoryService } from './services/ingredient-category.servic
     StepComponent,
     IngredientComponent,
     EditComponent,
-    EditIngredientComponent,
+    EditItemComponent,
     EditStepComponent,
     PlannerOverviewComponent,
     PlannerOverviewItemComponent,
@@ -66,7 +68,8 @@ import { IngredientCategoryService } from './services/ingredient-category.servic
     ConfirmationComponent,
     ShoppinglistComponent,
     ShoppinglistGroupComponent,
-    UnitsComponent
+    UnitsComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,7 @@ import { IngredientCategoryService } from './services/ingredient-category.servic
     RecipeService,
     MealPlanService,
     UnitService,
+    IngredientService,
     IngredientCategoryService
   ],
   entryComponents: [

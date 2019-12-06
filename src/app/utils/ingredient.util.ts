@@ -6,7 +6,6 @@ export class IngredientUtil {
   public static createEmpty(): Ingredient {
     return {
       name: null,
-      amount: null,
       category: IngredientCategory.MEAT
     }
   }

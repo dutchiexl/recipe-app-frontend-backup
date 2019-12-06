@@ -1,41 +1,35 @@
 import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormBuilder,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-  Validators
-} from '@angular/forms';
-import { Ingredient } from '../../../../interfaces/recipe/ingredient.interface';
-import { IngredientUtil } from '../../../../utils/ingredient.util';
+import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { Unit } from '../../../../interfaces/unit/unit';
 import { RecipeState } from '../../../../store/recipe.state';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ItemUtil } from '../../../../utils/item.util';
+import { Item } from '../../../../interfaces/recipe/item.interface';
 
 @Component({
-  selector: 'app-edit-ingredient',
+  selector: 'app-edit-item',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => EditIngredientComponent),
+      useExisting: forwardRef(() => EditItemComponent),
       multi: true
     }
   ]
 })
-export class EditIngredientComponent implements ControlValueAccessor, OnChanges, OnInit {
-  @Input() ingredient: Ingredient;
-  formIngredient: Ingredient = IngredientUtil.createEmpty();
-  @Output() addIngredient = new EventEmitter();
-  ingredientItemForm: FormGroup;
+export class EditItemComponent implements ControlValueAccessor, OnChanges, OnInit {
+  @Input() item: Item;
+  formItem: Item = ItemUtil.createEmpty();
+  @Output() addItem = new EventEmitter();
+  itemForm: FormGroup;
 
   units: Unit[];
   filteredOptions: Observable<Unit[]>;
 
-  onChange = (ingredient: Ingredient) => {};
+  onChange = (item: Item) => {};
 
   constructor(
     private store: Store,
@@ -47,17 +41,17 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   ngOnInit() {
-    this.formIngredient.name = this.ingredient.name ? this.ingredient.name.toString() : null;
-    this.formIngredient.unit = this.ingredient.unit ? this.ingredient.unit : null;
-    this.formIngredient.amount = this.ingredient.amount ? Number(this.ingredient.amount) : null;
+    this.formItem.ingredient = this.item.ingredient ? this.item.ingredient : null;
+    this.formItem.unit = this.item.unit ? this.item.unit : null;
+    this.formItem.amount = this.item.amount ? Number(this.item.amount) : null;
 
-    this.ingredientItemForm = this.formBuilder.group({
-      name: [this.formIngredient.name, Validators.required],
-      unit: [this.formIngredient.unit, Validators.required],
-      amount: [this.formIngredient.amount, [Validators.required]]
+    this.itemForm = this.formBuilder.group({
+      ingredient: [this.item.ingredient, Validators.required],
+      unit: [this.item.unit, Validators.required],
+      amount: [this.item.amount, [Validators.required]]
     });
 
-    this.filteredOptions = this.ingredientItemForm.get('unit').valueChanges.pipe(
+    this.filteredOptions = this.itemForm.get('unit').valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
@@ -89,10 +83,10 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   updateIngredient(event: Event) {
-    this.formIngredient.name = this.ingredientItemForm.get('name').value;
-    this.formIngredient.unit = this.ingredientItemForm.get('unit').value;
-    this.formIngredient.amount = this.ingredientItemForm.get('amount').value;
-    this.onChange(this.formIngredient);
+    this.formItem.ingredient = this.itemForm.get('ingredient').value;
+    this.formItem.unit = this.itemForm.get('unit').value;
+    this.formItem.amount = this.itemForm.get('amount').value;
+    this.onChange(this.formItem);
   }
 
   displayUnit() {
@@ -105,7 +99,7 @@ export class EditIngredientComponent implements ControlValueAccessor, OnChanges,
   }
 
   updateUnit(unit: Unit) {
-    this.ingredientItemForm.get('unit').setValue(unit);
+    this.itemForm.get('unit').setValue(unit);
     this.updateIngredient(null);
   }
 }

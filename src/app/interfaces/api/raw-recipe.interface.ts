@@ -1,5 +1,5 @@
-import { RawIngredient } from './raw-ingredient.interface';
 import { RawStep } from './raw-step.interface';
+import { RawItem } from './raw-item.interface';
 
 export interface RawRecipe{
   _id?: string,
@@ -9,7 +9,7 @@ export interface RawRecipe{
   imagePath?: string,
   creationDate: Date,
   steps: RawStep[],
-  ingredients: RawIngredient[],
+  items: RawItem[],
   nutrients: [],
   equipment: []
 }

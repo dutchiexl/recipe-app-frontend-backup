@@ -11,7 +11,8 @@ import { RecipeState } from '../../../store/recipe.state';
 import { RecipeListUtil } from '../../../utils/recipe-list.util';
 import { ActivatedRoute } from '@angular/router';
 import { Step } from '../../../interfaces/recipe/step.interface';
-import { Ingredient } from '../../../interfaces/recipe/ingredient.interface';
+import { Item } from '../../../interfaces/recipe/item.interface';
+import { ItemUtil } from '../../../utils/item.util';
 
 @Component({
   selector: 'app-edit',
@@ -21,7 +22,7 @@ import { Ingredient } from '../../../interfaces/recipe/ingredient.interface';
 export class EditComponent implements OnInit {
   recipe: Recipe;
   form: FormGroup;
-  ingredientFormGroup: FormArray = new FormArray([]);
+  itemFormGroup: FormArray = new FormArray([]);
   stepFormGroup: FormArray = new FormArray([]);
   preview = '/images/placeholder.png';
   @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
@@ -48,7 +49,7 @@ export class EditComponent implements OnInit {
       this.recipe = RecipeUtil.createEmpty();
     }
     this.createForm();
-    this.createIngredientForm();
+    this.createItemForm();
     this.createStepsForm();
   }
 
@@ -58,14 +59,14 @@ export class EditComponent implements OnInit {
       nameAddition: [this.recipe.nameAddition, Validators.required],
       description: [this.recipe.description, Validators.required],
       imagePath: [this.recipe.imagePath, Validators.required],
-      ingredients: this.ingredientFormGroup,
+      items: this.itemFormGroup,
       steps: this.stepFormGroup
     });
   }
 
-  private createIngredientForm() {
-    this.recipe.ingredients.forEach((ingredient) => {
-      this.ingredientFormGroup.push(new FormControl(ingredient, Validators.required));
+  private createItemForm() {
+    this.recipe.items.forEach((item) => {
+      this.itemFormGroup.push(new FormControl(item, Validators.required));
     });
   }
 
@@ -81,7 +82,7 @@ export class EditComponent implements OnInit {
       recipeToSubmit.name = this.form.get('name').value;
       recipeToSubmit.nameAddition = this.form.get('nameAddition').value;
       recipeToSubmit.description = this.form.get('description').value;
-      recipeToSubmit.ingredients = this.cleanIngredients(this.form.get('ingredients').value);
+      recipeToSubmit.items = this.cleanItems(this.form.get('items').value);
       recipeToSubmit.steps = this.cleanSteps(this.form.get('steps').value);
       recipeToSubmit.imagePath = this.form.get('imagePath').value;
 
@@ -92,18 +93,14 @@ export class EditComponent implements OnInit {
     }
   }
 
-  addIngredient() {
-    const ingredient = IngredientUtil.createEmpty();
-    this.ingredientFormGroup.push(new FormControl(ingredient, Validators.required));
+  addItem() {
+    const item = ItemUtil.createEmpty();
+    this.itemFormGroup.push(new FormControl(item, Validators.required));
   }
 
   addStep() {
     const step = StepUtil.createEmpty();
     this.stepFormGroup.push(new FormControl(step, Validators.required));
-  }
-
-  deleteIngredient(i: number) {
-
   }
 
   uploadFile(event) {
@@ -130,9 +127,9 @@ export class EditComponent implements OnInit {
       })
   }
 
-  private cleanIngredients(ingredients: Ingredient[]) {
-    return ingredients.filter((ingredient) => {
-      return !!ingredient.name && !!ingredient.amount;
+  private cleanItems(items: Item[]) {
+    return items.filter((items) => {
+      return !!items.ingredient.name && !!items.amount;
     })
   }
 

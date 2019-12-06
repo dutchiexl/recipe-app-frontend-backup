@@ -1,4 +1,4 @@
-<div [formGroup]="ingredientItemForm" class="ingredient-form">
+<div [formGroup]="itemForm" class="ingredient-form">
   <mat-form-field class="amount">
     <mat-label>Hoeveelheid</mat-label>
     <input matInput placeholder="Hoeveelheid" formControlName="amount" id="amount" (change)="updateIngredient($event)">
@@ -14,7 +14,7 @@
   </mat-form-field>
   <mat-form-field class="name">
     <mat-label>Naam</mat-label>
-    <input matInput placeholder="Naam" formControlName="name" (change)="updateIngredient($event)"
-           (keyup.tab)="addIngredient.next()">
+    <input matInput placeholder="Naam" formControlName="ingredient" (change)="updateIngredient($event)"
+           (keyup.tab)="addItem.next()">
   </mat-form-field>
 </div>

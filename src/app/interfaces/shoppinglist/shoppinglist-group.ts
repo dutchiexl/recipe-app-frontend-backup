@@ -1,7 +1,7 @@
-import { Ingredient } from '../recipe/ingredient.interface';
 import { IngredientCategory } from '../../enums/ingredient-category';
+import { Item } from '../recipe/item.interface';
 
 export interface ShoppinglistGroup {
   category: IngredientCategory;
-  ingredients: Ingredient[];
+  items: Item[];
 }

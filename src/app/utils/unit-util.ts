@@ -1,6 +1,8 @@
 import { Unit } from '../interfaces/unit/unit';
 import { Ingredient } from '../interfaces/recipe/ingredient.interface';
 import { IngredientUtil } from './ingredient.util';
+import { Item } from '../interfaces/recipe/item.interface';
+import { ItemUtil } from './item.util';
 
 export class UnitUtil {
   getParentUnit(unit: Unit, units: Unit[]) {
@@ -17,15 +19,15 @@ export class UnitUtil {
     }
   }
 
-  convertIngredientToMainUnit(ingredient: Ingredient, units: Unit[]): Ingredient {
-    const parentUnit = this.getParentUnit(ingredient.unit, units);
-    if (parentUnit && parentUnit.id !== ingredient.unit.id) {
-      const convertedIngredient = IngredientUtil.createEmpty();
-      const amount = ingredient.amount * ingredient.unit.parenRatio;
-      convertedIngredient.unit = parentUnit;
-      convertedIngredient.amount = amount;
-      return convertedIngredient;
+  convertItemstToMainUnit(item: Item, units: Unit[]): Item {
+    const parentUnit = this.getParentUnit(item.unit, units);
+    if (parentUnit && parentUnit.id !== item.unit.id) {
+      const convertedItem = ItemUtil.createEmpty();
+      const amount = item.amount * item.unit.parenRatio;
+      convertedItem.unit = parentUnit;
+      convertedItem.amount = amount;
+      return convertedItem;
     }
-    return ingredient;
+    return item;
   }
 }

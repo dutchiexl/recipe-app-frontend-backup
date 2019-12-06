@@ -28,16 +28,15 @@
             Ingredienten
           </h3>
           <div formArrayName="ingredients">
-            <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
-              <app-edit-ingredient
+            <div *ngFor="let item of itemFormGroup.controls; let i = index;">
+              <app-edit-item
                 formControlName="{{ i }}"
-                [ingredient]="ingredient.value"
-                (addIngredient)="addIngredient()">
-              </app-edit-ingredient>
-              <span (click)="deleteIngredient(i)"></span>
+                [item]="item.value"
+                (addItem)="addItem()">
+              </app-edit-item>
             </div>
           </div>
-          <a mat-raised-button color="primary" (click)="addIngredient()">Voeg ingredient toe</a>
+          <a mat-raised-button color="primary" (click)="addItem()">Voeg ingredient toe</a>
         </div>
       </div>
       <div class="steps list-overview columns-3" formArrayName="steps">

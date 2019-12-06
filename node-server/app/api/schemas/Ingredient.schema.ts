@@ -1,9 +1,11 @@
+import * as mongoose from 'mongoose';
 import { Schema } from 'mongoose';
+import { IIngredient } from '../interfaces/ingredient.interface';
 
-export const IngredientSchema: Schema = new Schema({
+const IngredientSchema: Schema = new Schema({
     name: {type: String, required: true, unique: true},
-    amount: {type: Number, required: true},
-    category: {type: String, required: true},
-    unit: {type: Schema.Types.ObjectId, ref: 'Unit'}
+    category: {type: Schema.Types.ObjectId, ref: 'IngredientCategory'}
   }
 );
+
+export default mongoose.model<IIngredient>('Ingredient', IngredientSchema);

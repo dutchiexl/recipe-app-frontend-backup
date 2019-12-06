@@ -1,5 +1,5 @@
 import { Step } from './step.interface';
-import { Ingredient } from './ingredient.interface';
+import { Item } from './item.interface';
 
 export interface Recipe {
   id?: string,
@@ -9,8 +9,7 @@ export interface Recipe {
   imagePath?: string;
   source?: string;
   steps: Step[];
-  ingredients: Ingredient[];
+  items: Item[];
   equipment: [];
-  nutrients: [];
   creationDate: Date;
 }

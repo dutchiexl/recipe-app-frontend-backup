@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const mongoose = tslib_1.__importStar(require("mongoose"));
 const mongoose_1 = require("mongoose");
-exports.IngredientSchema = new mongoose_1.Schema({
+const IngredientSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
-    amount: { type: Number, required: true },
-    category: { type: String, required: true },
-    unit: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Unit' }
+    category: { type: mongoose_1.Schema.Types.ObjectId, ref: 'IngredientCategory' }
 });
+exports.default = mongoose.model('Ingredient', IngredientSchema);
