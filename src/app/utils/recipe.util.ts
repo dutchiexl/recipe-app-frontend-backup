@@ -44,7 +44,7 @@ export class RecipeUtil {
           category: IngredientCategory.MEAT
         };
         if (ingredient.unit && ingredient.unit.id) {
-          rawIngredient.unitId = ingredient.unit.id;
+          rawIngredient.unit = ingredient.unit.id;
         }
         return rawIngredient;
       }),

@@ -27,7 +27,6 @@ export class RecipeService {
     return forkJoin([recipes$, units$]).pipe(
       map((result) => {
         let recipes = result[0] as RawRecipe[];
-        console.log(recipes);
         let units = result[1] as Unit[];
         return recipes.map((rawRecipeData: RawRecipe) => {
           return RecipeMapper.toObject(rawRecipeData, units)
@@ -41,7 +40,6 @@ export class RecipeService {
   }
 
   update(recipe: Recipe): Observable<Object> {
-    console.log(RecipeUtil.recipeAsJSON(recipe));
     return this.http.patch(this.callbackUrl + '/' + recipe.id, RecipeUtil.recipeAsJSON(recipe));
   }
 

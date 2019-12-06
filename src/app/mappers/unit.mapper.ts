@@ -6,7 +6,7 @@ export class UnitMapper {
 
   public static toModel(rawUnit: RawUnit): Unit {
     let unit: Unit = {
-      id: rawUnit.id,
+      id: rawUnit._id,
       name: rawUnit.name,
       metric: MetricMapper.toModel(rawUnit.metric),
       isParent: rawUnit.isParent,

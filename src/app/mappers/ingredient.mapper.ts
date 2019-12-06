@@ -12,8 +12,9 @@ export class IngredientMapper {
       category: IngredientCategory.MEAT
     };
 
-    if (rawIngredient.unitId) {
-      ingredient.unit = units.find((unit) => unit.id === rawIngredient.unitId)
+    console.log(rawIngredient );
+    if (rawIngredient.unit) {
+      ingredient.unit = units.find((unit) => unit.id === rawIngredient.unit)
     }
     return ingredient;
   }

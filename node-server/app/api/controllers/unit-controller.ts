@@ -1,35 +1,34 @@
 import { Request, Response } from 'express';
 import { Controller, Get, Patch, Post, Put } from '@overnightjs/core';
 import Recipe from '../schemas/recipe.schema';
-import { Logger } from '@overnightjs/logger';
+import Unit from '../schemas/unit.schema';
 
-@Controller('api/recipes')
-export class RecipeController {
+@Controller('api/units')
+export class UnitController {
 
   @Get()
-  private getRecipes(req: Request, res: Response) {
-    Recipe.find().then(recipes => {
-      res.status(200).json(recipes);
+  private getAll(req: Request, res: Response) {
+    Unit.find().then(units => {
+      res.status(200).json(units);
     });
   }
 
   @Post()
-  private InsertRecipe(req: Request, res: Response) {
-    new Recipe(req.body).save().then(result => {
+  private insert(req: Request, res: Response) {
+    new Unit(req.body).save().then(result => {
       res.status(200).json(result);
     });
   }
 
   @Put(':id')
-  private UpdateRecipe(req: Request, res: Response) {
+  private update(req: Request, res: Response) {
     Recipe.findOneAndUpdate({_id: req.params.id}, req.body).then(result => {
       res.status(200).json(result);
     });
   }
 
   @Patch(':id')
-  private PatchRecipe(req: Request, res: Response) {
-    Logger.Info(req.body);
+  private patch(req: Request, res: Response) {
     Recipe.findOneAndUpdate({_id: req.params.id}, req.body).then(result => {
       res.status(200).json(result);
     });

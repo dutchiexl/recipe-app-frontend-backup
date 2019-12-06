@@ -1,7 +1,7 @@
 import { Metric } from '../../enums/metric';
 
 export interface Unit {
-  id: number;
+  id: string;
   name: string;
   metric: Metric;
   isParent: boolean;

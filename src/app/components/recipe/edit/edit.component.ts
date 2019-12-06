@@ -37,8 +37,7 @@ export class EditComponent implements OnInit {
     let recipeIdParameter = this.route.snapshot.paramMap.get('recipeId');
     if (recipeIdParameter) {
       let recipeIdParameter = this.route.snapshot.paramMap.get('recipeId');
-      let recipeId = Number(recipeIdParameter);
-      this.recipe = RecipeListUtil.findRecipeById(this.store.selectSnapshot(RecipeState.getRecipes), recipeId);
+      this.recipe = RecipeListUtil.findRecipeById(this.store.selectSnapshot(RecipeState.getRecipes), recipeIdParameter);
 
       if (this.recipe) {
         if (this.recipe.imagePath) {

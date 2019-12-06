@@ -183,7 +183,7 @@ export class RecipeState {
     } else {
       this.recipeService.create(action.recipe).subscribe((recipe: RawRecipe) => {
         ctx.dispatch(new LoadRecipesAction());
-        ctx.dispatch(new NavigateAction(['recipe', recipe.id]))
+        ctx.dispatch(new NavigateAction(['recipe', recipe._id]))
       });
     }
   }

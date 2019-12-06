@@ -8,7 +8,7 @@ export class RecipeMapper {
 
   public static toObject(rawData: RawRecipe, units: Unit[]): Recipe {
     return {
-      id: rawData.id,
+      id: rawData._id,
       name: rawData.name,
       nameAddition: rawData.nameAddition,
       description: rawData.description,
