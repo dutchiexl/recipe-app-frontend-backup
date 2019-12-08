@@ -7,9 +7,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "frontend": "ng serve --proxy-config proxy.conf.json",
     "api": "cd node-server/build && npm run watch",
-    "app": "npm run start & npm run api",
+    "app": "npm run frontend & npm run api",
     "heroku-postbuild": "ng build --prod"
   },
   "private": true,
