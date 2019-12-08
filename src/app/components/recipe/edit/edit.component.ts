@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Step } from '../../../interfaces/recipe/step.interface';
 import { Item } from '../../../interfaces/recipe/item.interface';
 import { ItemUtil } from '../../../utils/item.util';
+import { UpdateOrCreateRecipeAction } from '../../../store/recipe.actions';
 
 @Component({
   selector: 'app-edit',
@@ -87,8 +88,7 @@ export class EditComponent implements OnInit {
       if (this.recipe.id) {
         recipeToSubmit.id = this.recipe.id;
       }
-      console.log(recipeToSubmit);
-     // this.store.dispatch(new UpdateOrCreateRecipeAction(recipeToSubmit));
+      this.store.dispatch(new UpdateOrCreateRecipeAction(recipeToSubmit));
     }
   }
 

@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateIngredientAction } from '../../../../store/recipe.actions';
 import { IngredientCategory } from '../../../../interfaces/recipe/ingredient-category';
+import { find, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-ingredient',
@@ -39,12 +40,30 @@ export class CreateIngredientComponent implements OnInit {
   ngOnInit() {
     this.ingredientForm = this.formBuilder.group({
       name: [this.ingredient.name, Validators.required],
+      category: [this.ingredient.category, Validators.required],
     });
   }
 
   onCreateClick() {
     if (this.ingredientForm.valid) {
-      this.dialogRef.close(this.ingredient);
+      this.store.select(RecipeState.getIngredients).pipe(
+        find((ingredients) => {
+          return ingredients.some((ingredient) => {
+            return ingredient.name === this.ingredientForm.get('name').value
+          })
+        }),
+        map((ingredients) => {
+          return ingredients.find((ingredient) => {
+            return ingredient.name === this.ingredientForm.get('name').value
+          })
+        })
+      ).subscribe((ingredient) => {
+        this.dialogRef.close(ingredient);
+      });
+
+      this.ingredient.name = this.ingredientForm.get('name').value;
+      this.ingredient.category = this.ingredientForm.get('category').value;
+
       this.store.dispatch(new CreateIngredientAction(this.ingredient));
     }
   }

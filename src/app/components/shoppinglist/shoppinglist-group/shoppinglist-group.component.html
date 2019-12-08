@@ -1,4 +1,4 @@
-<h1>{{ shoppingListGroup.category }}</h1>
+<h1>{{ shoppingListGroup.category.name }}</h1>
 <ul>
-  <app-ingredient *ngFor="let ingredient of shoppingListGroup.ingredients" [ingredient]="ingredient"></app-ingredient>
+  <app-item *ngFor="let item of shoppingListGroup.shoppingListItems" [item]="item"></app-item>
 </ul>

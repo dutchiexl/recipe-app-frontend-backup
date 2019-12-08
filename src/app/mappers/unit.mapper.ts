@@ -16,7 +16,7 @@ export class UnitMapper {
       unit.parenUnit = rawUnit.parentUnit;
     }
     if (rawUnit.parentRatio) {
-      unit.parenRatio = rawUnit.parentRatio;
+      unit.parentRatio = rawUnit.parentRatio;
     }
 
     return unit;

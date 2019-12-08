@@ -1,4 +1,4 @@
-import { IngredientCategory } from '../../enums/ingredient-category';
+import { IngredientCategory } from './ingredient-category';
 
 export interface Ingredient {
   id?: string;

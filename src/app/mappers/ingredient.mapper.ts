@@ -1,6 +1,5 @@
 import { RawIngredient } from '../interfaces/api/raw-ingredient.interface';
 import { Ingredient } from '../interfaces/recipe/ingredient.interface';
-import { IngredientCategory } from '../enums/ingredient-category';
 
 export class IngredientMapper {
 
@@ -8,7 +7,7 @@ export class IngredientMapper {
     return {
       id: rawIngredient._id,
       name: rawIngredient.name,
-      category: IngredientCategory.MEAT
+      category: rawIngredient.category
     };
   }
 }

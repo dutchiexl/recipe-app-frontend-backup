@@ -1,13 +1,12 @@
 import { Ingredient } from '../interfaces/recipe/ingredient.interface';
-import { IngredientCategory } from '../enums/ingredient-category';
 import { RawIngredient } from '../interfaces/api/raw-ingredient.interface';
 
 export class IngredientUtil {
 
   public static createEmpty(): Ingredient {
     return {
-      name: null,
-      category: IngredientCategory.MEAT
+      name: undefined,
+      category: undefined
     }
   }
 

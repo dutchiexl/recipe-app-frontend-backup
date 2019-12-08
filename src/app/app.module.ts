@@ -26,7 +26,6 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { StepComponent } from './components/recipe/step/step.component';
 import { LoadApplicationAction } from './store/recipe.actions';
-import { IngredientComponent } from './components/recipe/ingredient/ingredient.component';
 import { RecipeService } from './services/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,7 +56,6 @@ import { CreateIngredientComponent } from './components/recipe/ingredient/create
     OverviewComponent,
     DetailComponent,
     StepComponent,
-    IngredientComponent,
     EditComponent,
     EditItemComponent,
     EditStepComponent,

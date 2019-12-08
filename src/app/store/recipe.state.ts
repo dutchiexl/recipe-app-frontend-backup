@@ -3,7 +3,9 @@ import {
   CreateIngredientAction,
   DeleteMealPlanAction,
   DeleteRecipeAction,
-  LoadApplicationAction, LoadIngredientCategoriesAction, LoadIngredientsAction,
+  LoadApplicationAction,
+  LoadIngredientCategoriesAction,
+  LoadIngredientsAction,
   LoadMealPlansAction,
   LoadRecipesAction,
   LoadUnitsAction,
@@ -28,7 +30,6 @@ import { IngredientCategory } from '../interfaces/recipe/ingredient-category';
 import { UnitService } from '../services/unit.service';
 import { Ingredient } from '../interfaces/recipe/ingredient.interface';
 import { IngredientService } from '../services/ingredient.service';
-import { tap } from 'rxjs/operators';
 
 export interface RecipeStateModel {
   mode: AppModeEnum;
@@ -210,11 +211,13 @@ export class RecipeState {
     if (action.recipe.id) {
       this.recipeService.update(action.recipe).subscribe(() => {
         ctx.dispatch(new LoadRecipesAction());
+        ctx.dispatch(new LoadMealPlansAction());
         ctx.dispatch(new NavigateAction(['recipe', action.recipe.id]))
       });
     } else {
       this.recipeService.create(action.recipe).subscribe((recipe: RawRecipe) => {
         ctx.dispatch(new LoadRecipesAction());
+        ctx.dispatch(new LoadMealPlansAction());
         ctx.dispatch(new NavigateAction(['recipe', recipe._id]))
       });
     }
@@ -266,11 +269,14 @@ export class RecipeState {
 
   @Action(CreateIngredientAction)
   public createIngredient(ctx: StateContext<RecipeStateModel>, action: CreateIngredientAction) {
-    return this.ingredientService.create(action.ingredient).pipe(
-      tap((ingredient) => {
-        ctx.dispatch(new LoadIngredientsAction());
-      })
-    );
+    console.log(action.ingredient);
+    return this.ingredientService.create(action.ingredient).subscribe((ingredient) => {
+      ctx.setState(
+        produce(ctx.getState(), (draft) => {
+          draft.ingredients = [...draft.ingredients, ingredient];
+        }),
+      );
+    });
   }
 
   @Action(DeleteMealPlanAction)

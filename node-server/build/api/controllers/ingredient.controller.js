@@ -5,7 +5,19 @@ const core_1 = require("@overnightjs/core");
 const ingredient_schema_1 = tslib_1.__importDefault(require("../schemas/ingredient.schema"));
 let IngredientController = class IngredientController {
     getAll(req, res) {
-        ingredient_schema_1.default.find().then(units => {
+        ingredient_schema_1.default.aggregate([
+            {
+                $lookup: {
+                    from: 'ingredientcategories',
+                    localField: 'category',
+                    foreignField: '_id',
+                    as: 'category'
+                }
+            },
+            {
+                $unwind: "$category"
+            },
+        ]).then(units => {
             res.status(200).json(units);
         });
     }

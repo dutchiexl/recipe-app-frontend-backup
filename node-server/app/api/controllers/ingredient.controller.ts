@@ -7,7 +7,20 @@ export class IngredientController {
 
   @Get()
   private getAll(req: Request, res: Response) {
-    Ingredient.find().then(units => {
+    Ingredient.aggregate([
+      {
+        $lookup:
+          {
+            from: 'ingredientcategories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category'
+          }
+      },
+      {
+        $unwind: "$category"
+      },
+    ]).then(units => {
       res.status(200).json(units);
     });
   }

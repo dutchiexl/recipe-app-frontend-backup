@@ -6,6 +6,6 @@ export interface Unit {
   metric: Metric;
   isParent: boolean;
   parenUnit?: Unit;
-  parenRatio?: number;
+  parentRatio?: number;
   synonyms: string[];
 }

@@ -7,6 +7,8 @@ const UnitSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
     metric: { type: String, required: true },
     isParent: { type: Boolean, required: true },
+    parenUnit: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Unit' },
+    parenRatio: { type: Number },
     synonyms: { type: [String] }
 });
 exports.default = mongoose.model('Unit', UnitSchema);

@@ -29,6 +29,7 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
   formItem: Item = ItemUtil.createEmpty();
   @Output() addItem = new EventEmitter();
   itemForm: FormGroup;
+  enteredValue: string;
 
   units: Unit[];
   ingredients: Ingredient[];
@@ -104,6 +105,7 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
       let ingredients = this.ingredients.filter(option => option.name.toLowerCase().includes(filterValue));
       if (ingredients.length < 1) {
         let newIngredient = IngredientUtil.createEmpty();
+        this.enteredValue = value;
         newIngredient.name = `Add '${value}'?`;
         ingredients = [newIngredient];
       }
@@ -137,7 +139,6 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
   updateIngredient(ingredient: Ingredient) {
     if (!ingredient.id) {
       this.openCreateDialog(ingredient);
-      this.itemForm.get('ingredient').setValue(undefined);
     } else {
       this.itemForm.get('ingredient').setValue(ingredient);
       this.updateItem(null);
@@ -152,14 +153,16 @@ export class EditItemComponent implements ControlValueAccessor, OnChanges, OnIni
   }
 
   private openCreateDialog(ingredient: Ingredient) {
+    ingredient.name = this.enteredValue;
     const dialogRef = this.dialog.open(CreateIngredientComponent, {
       width: '400px',
       data: ingredient
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result)
+    dialogRef.afterClosed().subscribe(ingredient => {
+      if (ingredient) {
+        this.itemForm.get('ingredient').setValue(ingredient);
+        this.updateItem(null);
       }
     });
   }

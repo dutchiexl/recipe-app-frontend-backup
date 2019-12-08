@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../../../interfaces/recipe/item.interface';
+import { ShoppinglistItem } from '../../../interfaces/shoppinglist/shoppinglist-item';
 
 @Component({
   selector: 'app-item',
@@ -7,7 +8,7 @@ import { Item } from '../../../interfaces/recipe/item.interface';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  @Input() item: Item;
+  @Input() item: ShoppinglistItem;
 
   constructor() { }
 

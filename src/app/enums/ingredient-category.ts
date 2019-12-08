@@ -1,3 +1,3 @@
-export enum IngredientCategory {
-  MEAT = 'meat',
+export interface IngredientCategory {
+  name: string;
 }
