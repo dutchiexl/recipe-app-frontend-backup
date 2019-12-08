@@ -7,6 +7,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "start": "node server.js",
     "frontend": "ng serve --proxy-config proxy.conf.json",
     "api": "cd node-server/build && npm run watch",
     "app": "npm run frontend & npm run api",
@@ -56,5 +57,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
   }
 }
